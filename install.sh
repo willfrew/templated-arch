@@ -21,9 +21,11 @@ source $UTILS/install_sl.sh
 ##
 
 CONF=$DIR/inventory
-HOSTS=$CONF/hosts
-
 ANS_CONF=/etc/ansible
-ANS_HOSTS=$ANS_CONF/hosts
 
-install_sl "ansible inventory hosts" $HOSTS $ANS_HOSTS
+HOSTS=hosts
+GROUP_VARS=group_vars
+
+
+install_sl "ansible inventory hosts" $CONF/$HOSTS $ANS_CONF/$HOSTS
+install_sl "ansible inventory group variables" $CONF/$GROUP_VARS $ANS_CONF/$GROUP_VARS
