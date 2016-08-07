@@ -1,7 +1,9 @@
 # TODO configurable logging level
 
 function debug(){
-  echo "$1"
+  if [[ "$DEBUG" == "true" ]]; then
+    echo "$1"
+  fi
 }
 
 function info(){

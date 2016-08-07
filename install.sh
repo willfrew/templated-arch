@@ -25,7 +25,9 @@ ANS_CONF=/etc/ansible
 
 HOSTS=hosts
 GROUP_VARS=group_vars
+HOST_VARS=host_vars
 
+install_sl "hosts" $CONF/$HOSTS $ANS_CONF/$HOSTS
+install_sl "group variables" $CONF/$GROUP_VARS $ANS_CONF/$GROUP_VARS
+install_sl "host variables" $CONF/$HOST_VARS $ANS_CONF/$HOST_VARS
 
-install_sl "ansible inventory hosts" $CONF/$HOSTS $ANS_CONF/$HOSTS
-install_sl "ansible inventory group variables" $CONF/$GROUP_VARS $ANS_CONF/$GROUP_VARS
