@@ -1,3 +1,4 @@
 ---
 - include: global.yml
 - include: local.yml
+- include: vim.yml

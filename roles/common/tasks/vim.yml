@@ -2,9 +2,14 @@
 - name: Install vim
   pacman: name=vim update_cache=yes
 
-- name: Install a vimrc
+- name: Install will's vimrc
   copy:
     src: vimrc
     dest: /home/will/.vimrc
     owner: will
     group: will
+
+- name: Install root's vimrc
+  copy:
+    src: vimrc
+    dest: /root/.vimrc
