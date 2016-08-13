@@ -77,6 +77,6 @@ NVMINIT="/usr/share/nvm/init-nvm.sh"
 # See xmonad/xmonad.hs for corresponding command to start urxvt
 function cd() {
   builtin cd "$@"
-  echo $PWD > /tmp/.last_dir
-  chmod 600 /tmp/.last_dir
+  echo $PWD > /tmp/.last_dir_$UID
+  chmod 600 /tmp/.last_dir_$UID
 }
