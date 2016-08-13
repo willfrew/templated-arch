@@ -1,0 +1,13 @@
+# Set xresources - (urxvrt, )
+xrdb -merge ~/.Xresources
+# Cursor
+xsetroot -cursor_name left_ptr
+# US Keymap everywhere (even on non-us keyboards), for consistency
+setxkbmap -layout us
+# Increase key repeat rate
+xset r rate 200 28
+# Wallpaper
+sh ~/.fehbg &
+# Xmonad
+exec xmonad
+

@@ -4,3 +4,10 @@
 
 - name: Globally set up vconsole font and keymap(=us)
   copy: src=vconsole.conf dest=/etc/vconsole.conf
+
+- name: Install sudo
+  pacman: name=sudo
+
+- name: Create sudoers group wheel
+  group: name=wheel state=present
+

@@ -1,0 +1,31 @@
+---
+- name: Install xorg server, xmonad & xmobar
+  pacman: name={{ item }}
+  with_items:
+    - xorg-server
+    - xorg-server-utils
+    - xorg-xinit # TODO replace with my own startx script
+    - xorg-xsetroot # For setting the default cursor
+    - xmonad
+    - xmonad-contrib
+    - xmobar
+
+- name: Install terminal emulator (urvxt)
+  pacman: name={{ item}}
+  with_items:
+    - rxvt-unicode
+    - urxvt-perls
+
+- name: Install configuration dotfiles (/dotfolders)
+  copy:
+    src: "{{ item }}"
+    dest: "/home/will/.{{ item }}"
+    owner: will
+    group: will
+  with_items:
+    - xinitrc
+    - xmobarrc
+    - xmonad/
+    - Xresources
+  notify:
+    - recompile xmonad
