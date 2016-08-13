@@ -1,4 +1,7 @@
 ---
 - hosts: workstations
   roles:
-    - workstations
+    - common
+    - vim
+    # - guibox
+    # - devbox

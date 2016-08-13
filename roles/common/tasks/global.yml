@@ -1,0 +1,6 @@
+---
+- name: Install nice terminal font
+  pacman: name=terminus-font
+
+- name: Globally set up vconsole font and keymap(=us)
+  copy: src=vconsole.conf dest=/etc/vconsole.conf

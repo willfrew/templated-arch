@@ -1,0 +1,10 @@
+---
+- name: Install vim
+  pacman: name=vim update_cache=yes
+
+- name: Install a vimrc
+  copy:
+    src: vimrc
+    dest: /home/will/.vimrc
+    owner: will
+    group: will

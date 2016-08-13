@@ -1,0 +1,38 @@
+---
+- name: Install preferred packages
+  pacman: name={{ item }} update_cache=yes
+  with_items:
+    - tree
+    - rsync
+    - zsh
+    - grml-zsh-config # TODO review what this package is providing.
+    - openssh # For generating an ssh key later.
+
+- name: Create sudoers group wheel
+  group: name=wheel state=present
+
+- name: Create user will
+  user:
+    name: will
+    shell: /usr/bin/zsh
+    groups: wheel
+    createhome: yes
+    generate_ssh_key: yes
+
+- name: Install will's zshrc
+  copy:
+    src: zshrc
+    dest: /home/will/.zshrc
+    owner: will
+    group: will
+
+- name: Install root's zshrc
+  copy:
+    src: zshrc
+    dest: /root/.zshrc
+
+- name: Ensure root's default shell is zsh
+  user:
+    name: root
+    shell: /usr/bin/zsh
+...
