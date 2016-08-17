@@ -7,6 +7,15 @@
     - zsh
     - grml-zsh-config # TODO review what this package is providing.
     - openssh # For generating an ssh key later.
+    - base-devel # For building AUR packages (etc.)
+
+- name: Install aura (AUR-enabled pacman wrapper)
+  include: aur/pkg.yml pkg_name={{ item }}
+  vars:
+    makepkg_nonroot_user: will
+  with_items:
+    - aur-git # For zsh completion of AUR packages
+    - aura-bin # Using the precompiled binary because, pacman Haskell hell.
 
 - name: Create user will
   user:

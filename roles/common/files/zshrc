@@ -21,12 +21,6 @@ bindkey -e
 # End of lines configured by zsh-newuser-install
 
 #### Aliases ####
-# Netctl aliases
-alias netstrt='sudo netctl start'
-alias netswtch='sudo netctl switch-to'
-alias netstop='sudo netctl stop'
-
-# Assorted other aliases
 alias pacman='sudo aura'
 alias svim='sudo vim'
 
@@ -34,7 +28,9 @@ alias hibrnte='sudo systemctl hibernate'
 alias cp='rsync -avhz --progress'
 alias ls='ls --color=always -h'
 alias df='df -h'
+alias du='du -h'
 alias biggest='du -h . | sort -rh | head -$1'
+alias battperc='echo "$(date) - $(cat /sys/class/power_supply/BAT*/capacity)% - $(cat /sys/class/power_supply/BAT*/status)"'
 
 # Attempt to stop myself using pip!
 alias _pip=$(which pip)

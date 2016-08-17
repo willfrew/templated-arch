@@ -1,6 +1,12 @@
 ---
+- name: Gather facts
+  hosts: all
+  gather_facts: yes
+
 - hosts: all
   roles:
     - common
     - guibox
-    # - devbox
+    - laptop
+    - asus-n550 # TODO only apply this to work laptop
+    - devbox

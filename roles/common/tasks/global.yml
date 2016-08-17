@@ -1,4 +1,11 @@
 ---
+- name: Install pacman.conf
+  copy:
+    src: pacman.conf
+    dest: /etc/pacman.conf
+    owner: root
+    group: root
+
 - name: Install nice terminal font
   pacman: name=terminus-font
 
@@ -10,4 +17,5 @@
 
 - name: Create sudoers group wheel
   group: name=wheel state=present
+
 

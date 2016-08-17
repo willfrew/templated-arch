@@ -1,0 +1,10 @@
+---
+- name: Install synaptics driver
+  pacman: name=xf86-input-synaptics
+
+- name: Install touchpad config
+  copy:
+    src: 50-synaptics.conf
+    dest: /etc/X11/xorg.conf.d/50-synaptics.conf
+    owner: root
+    group: root

@@ -7,7 +7,7 @@ setxkbmap -layout us
 # Increase key repeat rate
 xset r rate 200 28
 # Wallpaper
-sh ~/.fehbg &
+feh --bg-scale ~/.wallpaper.jpg &
 # Xmonad
 exec xmonad
 

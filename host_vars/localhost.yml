@@ -1,4 +1,6 @@
 ---
 # Just while testing
 ansible_connection: local
+
+root_dir: "{{ ansible_env.ROOTDIR }}"
 ...

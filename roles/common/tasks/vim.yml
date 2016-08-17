@@ -9,6 +9,49 @@
     owner: will
     group: will
 
+- name: Create .vim folder and subdirectories
+  file:
+    path: /home/will/.vim/{{ item }}
+    state: directory
+    owner: will
+    group: will
+  with_items:
+    - bundle
+    - autoload
+
+- name: Install pathogen
+  get_url:
+    url: https://tpo.pe/pathogen.vim
+    dest: /home/will/.vim/autoload/pathogen.vim
+    owner: will
+    group: will
+
+- name: Install plugins from github
+  git:
+    repo: https://github.com/{{ item.owner }}/{{ item.reponame }}.git
+    dest: /home/will/.vim/bundle/{{ item.reponame }}
+  become: yes
+  become_user: will
+  with_items:
+    - owner: tpope
+      reponame: vim-surround
+    - owner: jiangmiao
+      reponame: auto-pairs
+    - owner: Shougo
+      reponame: vimproc.vim
+    - owner: Quramy
+      reponame: tsuquyomi
+    - owner: leafgarland
+      reponame: typescript-vim
+    - owner: briancollins
+      reponame: vim-jst
+
+- name: Make vimproc
+  make:
+    chdir: /home/will/.vim/bundle/vimproc.vim
+  become: yes
+  become_user: will
+
 - name: Install root's vimrc
   copy:
     src: vimrc

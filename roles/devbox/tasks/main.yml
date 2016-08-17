@@ -1,0 +1,23 @@
+---
+- name: Install development tools
+  pacman: name={{ item }}
+  with_items:
+    - git
+    - docker
+    - nodejs
+    - npm
+
+- name: Start docker daemon at boot time
+  shell: systemctl enable docker
+#  Awaiting ansible 2.2
+#  systemd:
+#    name: docker
+#    enabled: yes
+#    state: started # Also ensure it's currently running, for good measure.
+
+- name: Add myself to the docker group
+  user:
+    name: will
+    groups: docker
+    append: yes
+...

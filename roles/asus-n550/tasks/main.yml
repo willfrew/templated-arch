@@ -1,0 +1,7 @@
+---
+- name: Install global ALSA config file
+  copy:
+    src: asound.conf
+    dest: /etc/asound.conf
+    owner: root
+    group: root

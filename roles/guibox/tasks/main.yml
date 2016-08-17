@@ -9,14 +9,23 @@
     - xmonad
     - xmonad-contrib
     - xmobar
+    - dmenu
+    - feh
+    - alsa-utils # So xmonad can control volume levels through amixer
 
-- name: Install terminal emulator (urvxt)
-  pacman: name={{ item}}
+- name: Install xmonad config
+  copy:
+    src: "{{ item }}"
+    dest: "/home/will/.{{ item }}"
+    owner: will
+    group: will
   with_items:
-    - rxvt-unicode
-    - urxvt-perls
+    - xmobarrc
+    - xmonad/
+  notify:
+    - recompile xmonad
 
-- name: Install configuration dotfiles (/dotfolders)
+- name: Install other configuration dotfiles (/dotfolders)
   copy:
     src: "{{ item }}"
     dest: "/home/will/.{{ item }}"
@@ -24,8 +33,14 @@
     group: will
   with_items:
     - xinitrc
-    - xmobarrc
-    - xmonad/
     - Xresources
-  notify:
-    - recompile xmonad
+    - wallpaper.jpg
+
+- name: Install gui niceties
+  pacman: name={{ item }}
+  with_items:
+    - rxvt-unicode
+    - urxvt-perls
+    - chromium
+    - firefox
+    - ttf-dejavu
