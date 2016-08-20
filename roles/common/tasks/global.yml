@@ -18,4 +18,8 @@
 - name: Create sudoers group wheel
   group: name=wheel state=present
 
-
+- name: Allow wheel group to use wheel
+  copy:
+    src: 01_wheel_sudoers
+    dest: /etc/sudoers.d/01_wheel
+    validate: visudo -cf %s

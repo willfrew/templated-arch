@@ -1,0 +1,2 @@
+# Allow all users in the group "wheel" to use sudo (with their password)
+%wheel ALL=(ALL) ALL
