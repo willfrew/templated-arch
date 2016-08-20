@@ -15,13 +15,19 @@
 
 - name: Install xmonad config
   copy:
-    src: "{{ item }}"
-    dest: "/home/will/.{{ item }}"
+    src: xmonad/
+    dest: /home/will/.xmonad
     owner: will
     group: will
-  with_items:
-    - xmobarrc
-    - xmonad/
+  notify:
+    - recompile xmonad
+
+- name: Install xmobarrc
+  template:
+    src: xmobarrc.j2
+    dest: /home/will/.xmobarrc
+    owner: will
+    group: will
   notify:
     - recompile xmonad
 

@@ -1,0 +1,60 @@
+Config {
+  bgColor = "black",
+  fgColor = "grey",
+  position = Top,
+  lowerOnStart = True,
+  commands = [
+
+    Run DynNetwork [
+      "-t", "<dev>: <rx>KB|<tx>KB",
+      "-L", "0",
+      "-H", "32",
+      "--normal", "green",
+      "--high", "red"
+    ] 10,
+
+    Run Wireless "{{ wireless_interface }}" [ "-t", "<essid>(<quality>)" ] 10,
+
+    Run Cpu [
+      "-L", "3",
+      "-H", "50",
+      "--normal", "green",
+      "--high", "red"
+    ] 10,
+
+    Run Memory [ "-t","Mem: <usedratio>%" ] 10,
+
+    Run Swap [] 10,
+
+    Run BatteryP [ "{{ battery_acpi_name }}" ] [
+      "-t", "<acstatus>",
+	    "-L", "10",
+      "-H", "80",
+	    "-l", "red",
+      "-h", "green",
+			"--",
+      "-O", "^ <left>%",
+      "-o", "v <left>% (<timeleft>)",
+			"-f", "{{ ac_charging_file }}"
+    ] 10,
+
+    Run Com "uname" [ "-r" ] "" 36000,
+
+    Run Date "%a %_d %b %Y %H:%M:%S" "date" 10,
+
+    Run ThermalZone 0 [
+      "-t", "<temp>'C",
+      "-L", "45",
+      "-H", "60",
+      "-l", "blue",
+      "-n", "gray",
+      "-h", "red"
+    ] 30,
+
+    Run StdinReader
+  ],
+
+  sepChar = "%",
+  alignSep = "}{",
+  template = "%cpu% * %thermal0% | %memory% * %swap% | %{{ wireless_interface }}wi% %dynnetwork% } %StdinReader% { <fc=#ee9a00>%date%</fc> | %battery% | %uname%"
+}

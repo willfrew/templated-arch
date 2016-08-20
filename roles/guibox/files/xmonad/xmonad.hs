@@ -1,4 +1,5 @@
 import XMonad
+import XMonad.Config
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Layout.NoBorders
@@ -51,7 +52,7 @@ myKeys      = [
               ]
 
 conf      = defaultConfig
-            { terminal     = "urxvt -cd \"$(cat /tmp/.last_dir || echo $HOME)\"",
+            { terminal     = "urxvt -cd \"$(cat /tmp/.last_dir_$UID || echo $HOME)\"",
               modMask      = mod4Mask, -- Windows key
               borderWidth  = 1,        -- 1 pixel window borders
               normalBorderColor = "#515151",

@@ -2,5 +2,12 @@
 # Just while testing
 ansible_connection: local
 
-root_dir: "{{ ansible_env.ROOTDIR }}"
+
+### Xmobar config variables
+# ACPI Battery name
+battery_acpi_name: "BAT0"
+# ACPI AC charging info file in /sys/class/power_supply
+ac_charging_file: "AC0/online"
+# Wireless interface (for displaying connected SSID & strength)
+wireless_interface: "wlp4s0"
 ...
