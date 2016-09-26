@@ -50,3 +50,5 @@
     - chromium
     - firefox
     - ttf-dejavu
+    - scrot
+    - gimp

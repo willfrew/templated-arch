@@ -4,9 +4,12 @@
   with_items:
     - git
     - docker
+    - docker-compose
     - nodejs
     - npm
     - aws-cli
+    - python2-virtualenv
+    - lzop
 
 - name: Start docker daemon at boot time
   shell: systemctl enable docker

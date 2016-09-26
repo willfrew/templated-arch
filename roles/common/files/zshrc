@@ -32,10 +32,6 @@ alias du='du -h'
 alias biggest='du -h . | sort -rh | head -$1'
 alias battperc='echo "$(date) - $(cat /sys/class/power_supply/BAT*/capacity)% - $(cat /sys/class/power_supply/BAT*/status)"'
 
-# Attempt to stop myself using pip!
-alias _pip=$(which pip)
-alias pip='echo "use _pip if you really want to use pip, otherwise use pacman" #'
-
 # Base64 encode and decode
 function b64d() {
   echo "$1" | base64 -d
