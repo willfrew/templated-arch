@@ -4,11 +4,14 @@
   with_items:
     - tree
     - rsync
+    - zip
     - unzip
     - zsh
     - grml-zsh-config # TODO review what this package is providing.
     - openssh # For generating an ssh key later.
     - base-devel # For building AUR packages (etc.)
+    - gnu-netcat
+    - nmap
 
 - name: Install aura (AUR-enabled pacman wrapper)
   include: aur/pkg.yml pkg_name={{ item }}

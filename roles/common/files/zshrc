@@ -31,6 +31,7 @@ alias df='df -h'
 alias du='du -h'
 alias biggest='du -h . | sort -rh | head -$1'
 alias battperc='echo "$(date) - $(cat /sys/class/power_supply/BAT*/capacity)% - $(cat /sys/class/power_supply/BAT*/status)"'
+alias yieldify='docker run --rm -it -v ~/.aws:/root/.aws:rw 014560858850.dkr.ecr.eu-west-1.amazonaws.com/faceless-bash yieldify'
 
 # Base64 encode and decode
 function b64d() {
