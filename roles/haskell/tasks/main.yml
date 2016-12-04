@@ -1,0 +1,7 @@
+---
+- name: Install haskell packages
+  pacman: name={{ item }}
+  with_items:
+    - ghc
+    - stack
+...

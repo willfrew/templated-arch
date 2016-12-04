@@ -1,6 +1,9 @@
 ---
+- name: Update pacman cache
+  pacman: update_cache=yes
+
 - name: Install preferred packages
-  pacman: name={{ item }} update_cache=yes
+  pacman: name={{ item }}
   with_items:
     - tree
     - rsync
@@ -12,14 +15,9 @@
     - base-devel # For building AUR packages (etc.)
     - gnu-netcat
     - nmap
-
-- name: Install aura (AUR-enabled pacman wrapper)
-  include: aur/pkg.yml pkg_name={{ item }}
-  vars:
-    makepkg_nonroot_user: will
-  with_items:
-    - aur-git # For zsh completion of AUR packages
-    - aura-bin # Using the precompiled binary because, pacman Haskell hell.
+    - lsof
+    - dosfstools # For formatting usb sticks as FAT32
+    - ntfs-3g # Ditto for NTFS
 
 - name: Create user will
   user:
@@ -28,6 +26,14 @@
     groups: wheel
     createhome: yes
     generate_ssh_key: yes
+
+- name: Install aura (AUR-enabled pacman wrapper)
+  include: aur/pkg.yml pkg_name={{ item }}
+  vars:
+    makepkg_nonroot_user: will
+  with_items:
+    - aur-git # For zsh completion of AUR packages
+    - aura-bin # Using the precompiled binary, because pacman-Haskell hell.
 
 - name: Install will's zshrc
   copy:

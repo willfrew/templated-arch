@@ -8,5 +8,15 @@ if [[ "$( id -u )" != "0" ]]; then
   exit 1
 fi
 
-ansible-playbook -i $ROOTDIR/hosts $ROOTDIR/main.yml
+HOST=$([[ -e /etc/hostname  ]] && cat /etc/hostname)
+if [[ "$HOST" == "" ]]; then
+  echo "/etc/hostname must be populated with name of this ansible host"
+  exit 1
+fi
+
+cd $ROOTDIR
+git submodule init
+git submodule update
+
+ansible-playbook $ROOTDIR/main.yml --inventory $ROOTDIR/hosts --limit $HOST
 

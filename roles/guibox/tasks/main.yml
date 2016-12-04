@@ -6,6 +6,7 @@
     - xorg-server-utils
     - xorg-xinit # TODO replace with my own startx script
     - xorg-xsetroot # For setting the default cursor
+    - xorg-xprop # For querying info about open windows
     - xmonad
     - xmonad-contrib
     - xmobar
@@ -52,3 +53,5 @@
     - ttf-dejavu
     - scrot
     - gimp
+    - transmission-gtk
+    - vlc

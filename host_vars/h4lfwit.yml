@@ -1,0 +1,12 @@
+---
+ansible_connection: local
+become_method: su
+
+### Xmobar config variables
+# ACPI Battery name
+battery_acpi_name: "BAT1"
+# ACPI AC charging info file in /sys/class/power_supply
+ac_charging_file: "ACAD/online"
+# Wireless interface (for displaying connected SSID & strength)
+wireless_interface: "wlp2s0"
+...

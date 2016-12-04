@@ -21,6 +21,7 @@ bindkey -e
 # End of lines configured by zsh-newuser-install
 
 #### Aliases ####
+alias sudo='sudo ' # To allow sudo use with aliases
 alias pacman='sudo aura'
 alias svim='sudo vim'
 

@@ -6,6 +6,9 @@
     owner: root
     group: root
 
+- name: Install ansible (keep it up to date)
+  pacman: name=ansible
+
 - name: Install nice terminal font
   pacman: name=terminus-font
 
