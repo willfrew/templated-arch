@@ -52,6 +52,7 @@ export PATH=$PATH:$GOPATH/bin
 #### ENV VARS ####
 # Java blank windows fix
 export _JAVA_AWT_WM_NONREPARENTING=1
+export CHROME_BIN=$(which chromium)
 
 # RVM
 RVMINIT="$HOME/.rvm/scripts/rvm"
