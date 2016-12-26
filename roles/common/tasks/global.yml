@@ -7,16 +7,16 @@
     group: root
 
 - name: Install ansible (keep it up to date)
-  pacman: name=ansible
+  pacman: name=ansible state=latest
 
 - name: Install nice terminal font
-  pacman: name=terminus-font
+  pacman: name=terminus-font state=latest
 
 - name: Globally set up vconsole font and keymap(=us)
   copy: src=vconsole.conf dest=/etc/vconsole.conf
 
 - name: Install sudo
-  pacman: name=sudo
+  pacman: name=sudo state=latest
 
 - name: Create sudoers group wheel
   group: name=wheel state=present

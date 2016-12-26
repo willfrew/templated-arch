@@ -1,6 +1,6 @@
 ---
 - name: Install xorg server, xmonad & xmobar
-  pacman: name={{ item }}
+  pacman: name={{ item }} state=latest
   with_items:
     - xorg-server
     - xorg-server-utils
@@ -44,7 +44,7 @@
     - wallpaper.jpg
 
 - name: Install gui niceties
-  pacman: name={{ item }}
+  pacman: name={{ item }} state=latest
   with_items:
     - rxvt-unicode
     - urxvt-perls

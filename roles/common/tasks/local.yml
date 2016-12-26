@@ -3,7 +3,7 @@
   pacman: update_cache=yes
 
 - name: Install preferred packages
-  pacman: name={{ item }}
+  pacman: name={{ item }} state=latest
   with_items:
     - tree
     - rsync

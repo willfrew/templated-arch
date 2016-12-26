@@ -1,6 +1,6 @@
 ---
 - name: Install vim
-  pacman: name=vim update_cache=yes
+  pacman: name=vim state=latest
 
 - name: Install will's vimrc
   copy:

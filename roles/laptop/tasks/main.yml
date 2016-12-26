@@ -1,6 +1,6 @@
 ---
 - name: Install synaptics driver
-  pacman: name=xf86-input-synaptics
+  pacman: name=xf86-input-synaptics state=latest
 
 - name: Install touchpad config
   copy:

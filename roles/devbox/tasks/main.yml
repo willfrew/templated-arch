@@ -1,6 +1,6 @@
 ---
 - name: Install development tools
-  pacman: name={{ item }}
+  pacman: name={{ item }} state=latest
   with_items:
     - git
     - docker
