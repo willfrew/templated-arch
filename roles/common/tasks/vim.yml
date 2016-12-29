@@ -45,6 +45,8 @@
       reponame: typescript-vim
     - owner: briancollins
       reponame: vim-jst
+    - owner: ElmCast
+      reponame: elm-vim
 
 - name: Make vimproc
   make:
