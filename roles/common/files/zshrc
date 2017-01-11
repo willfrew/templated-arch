@@ -34,6 +34,11 @@ alias biggest='du -h . | sort -rh | head -$1'
 alias battperc='echo "$(date) - $(cat /sys/class/power_supply/BAT*/capacity)% - $(cat /sys/class/power_supply/BAT*/status)"'
 alias yieldify='docker run --rm -it -v ~/.aws:/root/.aws:rw 014560858850.dkr.ecr.eu-west-1.amazonaws.com/faceless-bash yieldify'
 
+# Setup screenshots directory and make scrot save to their by default
+scrots=~/Pictures/Screenshots
+mkdir -p $scrots
+alias scrot="scrot '$scrots/%Y-%m-%d_screenshot.png'"
+
 # Base64 encode and decode
 function b64d() {
   echo "$1" | base64 -d

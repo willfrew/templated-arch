@@ -11,6 +11,13 @@
     - python2-virtualenv
     - lzop
 
+- name: Install gitconfig
+  copy:
+    src: gitconfig
+    dest: /home/will/.gitconfig
+    owner: will
+    group: will
+
 - name: Start docker daemon at boot time
   systemd:
     name: docker
