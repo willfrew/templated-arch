@@ -18,5 +18,5 @@ cd $ROOTDIR
 git submodule init
 git submodule update
 
-ansible-playbook $ROOTDIR/main.yml --inventory $ROOTDIR/hosts --limit $HOST
+ansible-playbook $ROOTDIR/main.yml --inventory $ROOTDIR/hosts --limit $HOST "$@"
 
