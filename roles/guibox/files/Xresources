@@ -5,13 +5,16 @@
 !URxvt.background:	#0A0A0A
 URxvt.foreground:	#AAAAAA
 URxvt.scrollBar	:	false
-URxvt.font	:	xft:Terminus:size=12
+URxvt.font	:	-*-terminus-*-*-*-*-16-*-*-*-*-*-*-*
+! Seeing the font spacing bug again :(
+!URxvt.font : xft:Terminus:size=12
 URxvt.termName  :	rxvt
 URxvt.transparent:	true
 URxvt.shading	:	15
 
 Xft.antialias	:	true
 Xft.rgba 	:	rgb
+
 
 ! urxvt-perls extensions
 URxvt.perl-ext-common: clipboard
