@@ -5,9 +5,9 @@
 !URxvt.background:	#0A0A0A
 URxvt.foreground:	#AAAAAA
 URxvt.scrollBar	:	false
-URxvt.font	:	-*-terminus-*-*-*-*-16-*-*-*-*-*-*-*
+!URxvt.font	:	-*-terminus-*-*-*-*-16-*-*-*-*-*-*-*
 ! Seeing the font spacing bug again :(
-!URxvt.font : xft:Terminus:size=12
+URxvt.font : xft:xos4 Terminus:size=12
 URxvt.termName  :	rxvt
 URxvt.transparent:	true
 URxvt.shading	:	15
