@@ -10,7 +10,7 @@ URxvt.scrollBar	:	false
 URxvt.font : xft:xos4 Terminus:size=12
 URxvt.termName  :	rxvt
 URxvt.transparent:	true
-URxvt.shading	:	15
+URxvt.shading	:	30
 
 Xft.antialias	:	true
 Xft.rgba 	:	rgb

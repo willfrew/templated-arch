@@ -54,22 +54,13 @@ export PATH=$PATH:/opt/android-sdk/tools:/opt/android-sdk/platform-tools
 # go-workspace
 export GOPATH=$HOME/Projects/go
 export PATH=$PATH:$GOPATH/bin
+
 #### ENV VARS ####
 # Java blank windows fix
 export _JAVA_AWT_WM_NONREPARENTING=1
 export CHROME_BIN=$(which chromium)
-
-# RVM
-RVMINIT="$HOME/.rvm/scripts/rvm"
-if [ -s $RVMINIT ]; then
-  export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-  source $RVMINIT
-  [[ -r "$HOME/.rvm/scripts/completion" ]] && source "$HOME/.rvm/scripts/completion"
-fi
-
-# NVM
-NVMINIT="/usr/share/nvm/init-nvm.sh"
-[[ -s $NVMINIT ]] && source $NVMINIT
+# So NPM_TOKEN can be used in docker builds
+export NPM_TOKEN=$(cat ~/.npmrc | sed -e 's/^.*authToken=//')
 
 # Store the last directory cd'd into so that we can start new shells in the
 # same directory.
