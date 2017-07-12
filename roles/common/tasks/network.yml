@@ -1,0 +1,41 @@
+---
+- name: Install networking packages
+  pacman: name={{ item }} state=latest
+  with_items:
+    - openssh
+    - openvpn
+    - easy-rsa
+    - gnu-netcat
+    - tcpdump
+    - traceroute
+    - nmap
+
+- name: Install Google Public DNS resolv.conf
+  copy:
+    src: resolv.conf
+    dest: /etc/resolv.conf
+    owner: root
+    group: root
+
+- name: Install OpenVPN config files
+  copy:
+    src: openvpn/{{ item }}
+    dest: /etc/openvpn/client/{{ item }}
+    owner: root
+    group: root
+  with_items:
+    - ca.crt
+    - client.conf
+
+- name: Ensure OpenVPN is reconnects after suspend
+  copy:
+    src: openvpn/openvpn-reconnect.service
+    dest: /etc/systemd/system/openvpn-reconnect.service
+    owner: root
+    group: root
+
+- name: Enable OpenVPN reconnect service
+  systemd:
+    name: openvpn-reconnect
+    enabled: yes
+    state: started

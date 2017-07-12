@@ -26,10 +26,3 @@
     src: 01_wheel_sudoers
     dest: /etc/sudoers.d/01_wheel
     validate: visudo -cf %s
-
-- name: Install resolv.conf
-  copy:
-    src: resolv.conf
-    dest: /etc/resolv.conf
-    owner: root
-    group: root
