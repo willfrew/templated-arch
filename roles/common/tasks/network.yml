@@ -9,6 +9,7 @@
     - tcpdump
     - traceroute
     - nmap
+    - bind-tools # DNS utilities
 
 - name: Install Google Public DNS resolv.conf
   copy:

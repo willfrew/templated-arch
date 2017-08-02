@@ -47,6 +47,8 @@
       reponame: vim-jst
     - owner: ElmCast
       reponame: elm-vim
+    - owner: junegunn
+      reponame: fzf.vim
 
 - name: Make vimproc
   make:

@@ -18,6 +18,9 @@
 - name: Install sudo
   pacman: name=sudo state=latest
 
+- name: Install polkit
+  pacman: name=polkit state=latest
+
 - name: Create sudoers group wheel
   group: name=wheel state=present
 

@@ -11,6 +11,12 @@ zstyle :compinstall filename '/home/will/.zshrc'
 autoload -Uz compinit
 compinit
 
+# fzf completion & keybindings
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
+# Trigger fzf completion with !!<TAB>
+FZF_COMPLETION_TRIGGER='!!'
+
 # End of lines added by compinstall
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
