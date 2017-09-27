@@ -2,25 +2,27 @@
 ! ##### URXVT Config #####
 ! #####--------------#####
 
-!URxvt.background:	#0A0A0A
-URxvt.foreground:	#AAAAAA
-URxvt.scrollBar	:	false
-!URxvt.font	:	-*-terminus-*-*-*-*-16-*-*-*-*-*-*-*
+!URxvt.background : #0A0A0A
+URxvt.foreground : #AAAAAA
+URxvt.scrollBar : false
+!URxvt.font : -*-terminus-*-*-*-*-16-*-*-*-*-*-*-*
 ! Seeing the font spacing bug again :(
 URxvt.font : xft:xos4 Terminus:size=12
-URxvt.termName  :	rxvt
-URxvt.transparent:	true
-URxvt.shading	:	30
+URxvt.termName : rxvt
+URxvt.transparent : true
+URxvt.shading : 30
+! Buffer all the things
+URxvt.saveLines : 100000
 
-Xft.antialias	:	true
-Xft.rgba 	:	rgb
+Xft.antialias : true
+Xft.rgba : rgb
 
 
 ! urxvt-perls extensions
-URxvt.perl-ext-common: clipboard
-URxvt.clipboard.autocopy: true
-URxvt.keysym.M-c:   perl:clipboard:copy
-URxvt.keysym.M-v:   perl:clipboard:paste
+URxvt.perl-ext-common : clipboard
+URxvt.clipboard.autocopy : true
+URxvt.keysym.M-c : perl:clipboard:copy
+URxvt.keysym.M-v : perl:clipboard:paste
 
 
 ! Solarized color scheme for the X Window System

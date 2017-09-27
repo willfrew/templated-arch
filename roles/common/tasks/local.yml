@@ -13,8 +13,9 @@
     - grml-zsh-config # TODO review what this package is providing.
     - base-devel # For building AUR packages (etc.)
     - lsof
-    - dosfstools # For formatting usb sticks as FAT32
-    - ntfs-3g # Ditto for NTFS
+    - dosfstools
+    - exfat-utils
+    - ntfs-3g
     - fzf # Fuzzy finder
 
 - name: Create user will
