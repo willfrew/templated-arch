@@ -14,8 +14,11 @@ compinit
 # fzf completion & keybindings
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
-# Trigger fzf completion with !!<TAB>
-FZF_COMPLETION_TRIGGER='!!'
+# Trigger fzf completion with ~~<TAB>
+FZF_COMPLETION_TRIGGER='~~'
+# .gitignore aware file list
+FZF_DEFAULT_COMMAND='ag -g ""'
+FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # End of lines added by compinstall
 # Lines configured by zsh-newuser-install
@@ -39,6 +42,10 @@ alias du='du -h'
 alias biggest='du -h . | sort -rh | head -$1'
 alias battperc='echo "$(date) - $(cat /sys/class/power_supply/BAT*/capacity)% - $(cat /sys/class/power_supply/BAT*/status)"'
 alias yieldify='docker run --rm -it -v ~/.aws:/root/.aws:rw 014560858850.dkr.ecr.eu-west-1.amazonaws.com/faceless-bash yieldify'
+
+# Clipboard manipulation (pipe in / out)
+alias cbcopy="xsel -b -i"
+alias cbpaste="xsel -b -o"
 
 # Setup screenshots directory and make scrot save to their by default
 scrots=~/Pictures/Screenshots
