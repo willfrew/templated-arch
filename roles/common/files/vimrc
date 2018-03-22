@@ -43,3 +43,8 @@ autocmd FileType tex setlocal spell
 " Omni-completion
 filetype plugin on
 set omnifunc=syntaxcomplete#Complete
+
+"" Typescript config
+" Edit typescript files in-place for better webpack 'watch' compatibility
+autocmd FileType typescript setlocal backupcopy=yes
+autocmd FileType typescript nnoremap <leader>t :echo tsuquyomi#hint()<CR>
