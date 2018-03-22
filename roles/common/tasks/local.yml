@@ -17,6 +17,8 @@
     - exfat-utils
     - ntfs-3g
     - fzf # Fuzzy finder
+    - the_silver_searcher # Code searching tool (ag)
+    - jq
 
 - name: Create user will
   user:
