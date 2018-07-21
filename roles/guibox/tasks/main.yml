@@ -14,6 +14,7 @@
     - dmenu
     - feh
     - alsa-utils # So xmonad can control volume levels through amixer
+    - libnotify
 
 - name: Install xmonad config
   copy:

@@ -27,14 +27,19 @@
     groups: wheel
     createhome: yes
     generate_ssh_key: yes
+    # Only append groups, don't remove existing ones as others will be
+    # added by other roles
+    #
+    # Maybe unnecessary if building a container image
+    append: yes
 
 - name: Install aura (AUR-enabled pacman wrapper)
-  include: aur/pkg.yml pkg_name={{ item }}
-  vars:
-    makepkg_nonroot_user: will
-  with_items:
-    - aur-git # For zsh completion of AUR packages
-    - aura-bin # Using the precompiled binary, because pacman-Haskell hell.
+  aur:
+    name: aura-bin
+    use: makepkg
+    skip_installed: yes
+  become: yes
+  become_user: will
 
 - name: Install will's zshrc
   copy:

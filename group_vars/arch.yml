@@ -1,4 +1,0 @@
----
-# Arch has python 3 installed by default 
-ansible_python_interpreter: /usr/bin/python2
-...
