@@ -35,8 +35,8 @@
   with_items:
     - owner: tpope
       reponame: vim-surround
-    - owner: jiangmiao
-      reponame: auto-pairs
+    - owner: vim-scripts
+      reponame: auto-pairs-gentle
     - owner: Shougo
       reponame: vimproc.vim
     - owner: Quramy

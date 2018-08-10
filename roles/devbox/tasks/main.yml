@@ -10,6 +10,7 @@
     - aws-cli
     - python2-virtualenv
     - lzop
+    - jmeter
 
 - name: Install gitconfig
   copy:

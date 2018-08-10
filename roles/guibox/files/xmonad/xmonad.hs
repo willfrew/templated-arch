@@ -15,18 +15,14 @@ main =
   xmonad =<< xmobar conf
 
 -- Named (and un-named) workspaces.
-wkspcs = ["code", "web", "term", "skype", "tunes", "6", "7", "8", "9"]
+wkspcs = ["1", "web", "term", "4", "tunes", "6", "7", "8", "9"]
 
 -- Per-program management
 manageProgs = composeAll
                 [ className =? "Chromium" --> viewShift "web",
                   className =? "Firefox"  --> viewShift "web",
-                  className =? "Brackets" --> viewShift "code",
-                  className =? "Atom"     --> viewShift "code",
-                  stringProperty "WM_NAME" =? "Eclipse"  --> viewShift "code",
                   className =? "Gimp"     --> viewShift "img",
                   className =? "URxvt"    --> viewShift "term",
-                  className =? "Skype"    --> viewShift "skype",
                   stringProperty "WM_WINDOW_ROLE" =? "pop-up" --> doFloat
                 ]
                 where viewShift = doF . liftM2 (.) W.greedyView W.shift
@@ -36,9 +32,9 @@ myKeys      = [
                 ("M-i", spawn "chromium" ),
                 ("<XF86AudioRaiseVolume>", spawn "amixer set Master 1+"),
                 ("<XF86AudioLowerVolume>", spawn "amixer set Master 1-"),
+                ("<XF86AudioMute>", spawn "amixer set Master toggle"),
                 ("<XF86MonBrightnessUp>", spawn "xbacklight -inc 10"),
                 ("<XF86MonBrightnessDown>", spawn "xbacklight -dec 10"),
-                ("<XF86AudioMute>", spawn "amixer set Master toggle"),
                 -- asus specific binds
                 -- TODO: work out how to set keys per machine.
                 ("<XF86KbdBrightnessUp>", spawn "asus-kbd-backlight up"),
