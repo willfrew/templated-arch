@@ -41,7 +41,11 @@ alias df='df -h'
 alias du='du -h'
 alias biggest='du -h . | sort -rh | head -$1'
 alias battperc='echo "$(date) - $(cat /sys/class/power_supply/BAT*/capacity)% - $(cat /sys/class/power_supply/BAT*/status)"'
-alias yieldify='docker run --rm -it -v ~/.aws:/root/.aws:rw 014560858850.dkr.ecr.eu-west-1.amazonaws.com/faceless-bash yieldify'
+
+# If faceless is installed under ~/.faceless, let it set up the yieldify command
+[ -f $HOME/.faceless/.venv/bin/_facelesscmd ] && \
+  eval $($HOME/.faceless/.venv/bin/_facelesscmd env init)
+
 
 # Clipboard manipulation (pipe in / out)
 alias cbcopy="xsel -b -i"

@@ -7,5 +7,8 @@
 4. Clone this repo (`git clone https://github.com/willfrew/templated-arch`)
 5. Run the ansible playbook (`./templated-arch/install.sh`)
 6. Set your password (`passwd will`)
+
+### Optional steps
 7. Copy signed vpn cert & key to /etc/openvpn/client.{crt,key}
 8. Enable openvpn `systemctl enable openvpn-client@client.service`
+9. Clone faceless into ~/.faceless & setup as per repo instructions
