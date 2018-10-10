@@ -12,6 +12,15 @@
     - lzop
     - jmeter
 
+- name: Install k8s tooling from aur
+  aur: name={{ item }} use=makepkg skip_installed=yes
+  become: yes
+  become_user: will
+  with_items:
+    - minikube
+    - kubectl
+    - kubectx
+
 - name: Install gitconfig
   copy:
     src: gitconfig
