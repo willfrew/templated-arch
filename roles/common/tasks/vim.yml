@@ -49,6 +49,10 @@
       reponame: elm-vim
     - owner: junegunn
       reponame: fzf.vim
+    - owner: davidhalter
+      reponame: jedi-vim
+    - owner: vim-syntastic
+      reponame: syntastic
 
 - name: Make vimproc
   make:

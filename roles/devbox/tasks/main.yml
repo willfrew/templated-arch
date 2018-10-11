@@ -11,6 +11,11 @@
     - python2-virtualenv
     - lzop
     - jmeter
+    # For running kubernetes with kvm via minikube
+    - qemu-headless
+    - libvirt
+    - ebtables # Required for libvirt networking
+    - dnsmasq # Ditto
 
 - name: Install k8s tooling from aur
   aur: name={{ item }} use=makepkg skip_installed=yes
@@ -18,8 +23,21 @@
   become_user: will
   with_items:
     - minikube
+    - docker-machine-driver-kvm2
     - kubectl
     - kubectx
+
+- name: Add myself to libvirt group
+  user:
+    name: will
+    groups: libvirt
+    append: yes
+
+- name: Start libvirt daemon at boot time
+  systemd:
+    name: libvirtd
+    enabled: yes
+    state: started
 
 - name: Install gitconfig
   copy:
