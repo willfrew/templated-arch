@@ -11,6 +11,8 @@
     - python2-virtualenv
     - lzop
     - jmeter
+    - packer
+
     # For running kubernetes with kvm via minikube
     - qemu-headless
     - libvirt
@@ -26,6 +28,7 @@
     - docker-machine-driver-kvm2
     - kubectl
     - kubectx
+    - kubernetes-helm
 
 - name: Add myself to libvirt group
   user:
