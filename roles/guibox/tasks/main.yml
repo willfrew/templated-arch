@@ -3,7 +3,6 @@
   pacman: name={{ item }} state=latest
   with_items:
     - xorg-server
-    - xorg-server-utils
     - xorg-xinit # TODO replace with my own startx script
     - xorg-xsetroot # For setting the default cursor
     - xorg-xprop # For querying info about open windows

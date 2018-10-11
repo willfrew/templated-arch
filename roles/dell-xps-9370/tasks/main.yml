@@ -1,0 +1,5 @@
+---
+- name: Install bios cli tools
+  pacman:
+    name: libsmbios
+    state: latest

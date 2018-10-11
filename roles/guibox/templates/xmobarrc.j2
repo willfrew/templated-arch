@@ -24,8 +24,6 @@ Config {
 
     Run Memory [ "-t","Mem: <usedratio>%" ] 10,
 
-    Run Swap [] 10,
-
     Run BatteryP [ "{{ battery_acpi_name }}" ] [
       "-t", "<acstatus>",
 	    "-L", "10",
@@ -42,9 +40,9 @@ Config {
 
     Run Date "%a %_d %b %Y %H:%M:%S" "date" 10,
 
-    Run ThermalZone 0 [
-      "-t", "<temp>'C",
-      "-L", "45",
+    Run CoreTemp [
+      "-t", "{% for core in core_temps %}<{{ core }}>{{ '' if loop.last else '|' }}{% endfor %}'C",
+      "-L", "40",
       "-H", "60",
       "-l", "blue",
       "-n", "gray",
@@ -56,5 +54,5 @@ Config {
 
   sepChar = "%",
   alignSep = "}{",
-  template = "%cpu% * %thermal0% | %memory% * %swap% | %{{ wireless_interface }}wi% %dynnetwork% } %StdinReader% { <fc=#ee9a00>%date%</fc> | %battery% | %uname%"
+  template = "%cpu% * %coretemp% | %memory% | %{{ wireless_interface }}wi% %dynnetwork% } %StdinReader% { <fc=#ee9a00>%date%</fc> | %battery% | %uname%"
 }

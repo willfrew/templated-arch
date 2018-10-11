@@ -10,7 +10,6 @@
     - aws-cli
     - python2-virtualenv
     - lzop
-    - jmeter
     - packer
 
     # For running kubernetes with kvm via minikube
@@ -19,7 +18,7 @@
     - ebtables # Required for libvirt networking
     - dnsmasq # Ditto
 
-- name: Install k8s tooling from aur
+- name: Install devtools from aur
   aur: name={{ item }} use=makepkg skip_installed=yes
   become: yes
   become_user: will
@@ -29,6 +28,7 @@
     - kubectl
     - kubectx
     - kubernetes-helm
+    - jmeter
 
 - name: Add myself to libvirt group
   user:

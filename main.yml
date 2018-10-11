@@ -3,13 +3,14 @@
   hosts: all
   gather_facts: yes
 
-- hosts: h4lfwit
+- hosts: microd0s
   roles:
     - common
     - guibox
     - laptop
     - devbox
     - haskell
+    - dell-xps-9370
 
 - hosts: wr4ith
   roles:

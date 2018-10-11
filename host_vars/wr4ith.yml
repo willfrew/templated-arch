@@ -10,4 +10,10 @@ battery_acpi_name: "BAT0"
 ac_charging_file: "AC0/online"
 # Wireless interface (for displaying connected SSID & strength)
 wireless_interface: "wlp4s0"
+# CPU core temps to monitor
+core_temps:
+  - core0
+  - core1
+  - core2
+  - core3
 ...
