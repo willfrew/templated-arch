@@ -4,9 +4,16 @@ become_method: su
 
 ### Xmobar config variables
 # ACPI Battery name
-battery_acpi_name: "BAT1"
+battery_acpi_name: "BAT0"
 # ACPI AC charging info file in /sys/class/power_supply
-ac_charging_file: "ACAD/online"
+ac_charging_file: "AC/online"
 # Wireless interface (for displaying connected SSID & strength)
 wireless_interface: "wlp2s0"
+# CPU core temps to monitor
+core_temps:
+  # core0 seems to be something else
+  - core1
+  - core2
+  - core3
+  - core4
 ...
