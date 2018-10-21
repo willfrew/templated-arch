@@ -6,7 +6,10 @@
     - xorg-xinit # TODO replace with my own startx script
     - xorg-xsetroot # For setting the default cursor
     - xorg-xprop # For querying info about open windows
+    - xorg-xev # For printing x server events
     - xorg-xfontsel # For visually selecting font strings
+    - xorg-xrandr
+    - xorg-xbacklight
     - xmonad
     - xmonad-contrib
     - xmobar
@@ -56,3 +59,11 @@
     - gimp
     - transmission-gtk
     - vlc
+
+- name: Install libwidevine for Netflix DRM
+  aur:
+    name: chromium-widevine
+    use: makepkg
+    skip_installed: yes
+  become: yes
+  become_user: will
