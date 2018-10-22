@@ -1,4 +1,5 @@
 #!/usr/bin/bash
+set -eux
 
 ROOTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 export ROOTDIR
@@ -18,5 +19,10 @@ cd $ROOTDIR
 git submodule init
 git submodule update
 
+# Update pacman cache
+pacman -Sy
+
 ansible-playbook $ROOTDIR/main.yml --inventory $ROOTDIR/hosts --limit $HOST "$@"
 
+# System upgrade
+pacman -Su

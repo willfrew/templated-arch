@@ -1,22 +1,23 @@
 ---
 - name: Install development tools
-  pacman: name={{ item }} state=latest
-  with_items:
-    - git
-    - docker
-    - docker-compose
-    - nodejs
-    - npm
-    - aws-cli
-    - python2-virtualenv
-    - lzop
-    - packer
+  pacman:
+    state: latest
+    name:
+      - git
+      - docker
+      - docker-compose
+      - nodejs
+      - npm
+      - aws-cli
+      - python2-virtualenv
+      - lzop
+      - packer
 
-    # For running kubernetes with kvm via minikube
-    - qemu-headless
-    - libvirt
-    - ebtables # Required for libvirt networking
-    - dnsmasq # Ditto
+      # For running kubernetes with kvm via minikube
+      - qemu-headless
+      - libvirt
+      - ebtables # Required for libvirt networking
+      - dnsmasq # Ditto
 
 - name: Install devtools from aur
   aur: name={{ item }} use=makepkg skip_installed=yes

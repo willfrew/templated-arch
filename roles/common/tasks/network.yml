@@ -1,15 +1,16 @@
 ---
 - name: Install networking packages
-  pacman: name={{ item }} state=latest
-  with_items:
-    - openssh
-    - openvpn
-    - easy-rsa
-    - gnu-netcat
-    - tcpdump
-    - traceroute
-    - nmap
-    - bind-tools # DNS utilities
+  pacman:
+    state: latest
+    name:
+      - openssh
+      - openvpn
+      - easy-rsa
+      - gnu-netcat
+      - tcpdump
+      - traceroute
+      - nmap
+      - bind-tools # DNS utilities
 
 - name: Install Google Public DNS resolv.conf
   copy:
