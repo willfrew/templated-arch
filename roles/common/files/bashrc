@@ -1,0 +1,4 @@
+
+# If faceless is installed under ~/.faceless, let it set up the yieldify command
+[ -f $HOME/.faceless/.venv/bin/_facelesscmd ] && \
+  eval $($HOME/.faceless/.venv/bin/_facelesscmd env init)

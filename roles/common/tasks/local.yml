@@ -1,24 +1,22 @@
 ---
-- name: Update pacman cache
-  pacman: update_cache=yes
-
 - name: Install preferred packages
-  pacman: name={{ item }} state=latest
-  with_items:
-    - tree
-    - rsync
-    - zip
-    - unzip
-    - zsh
-    - grml-zsh-config # TODO review what this package is providing.
-    - base-devel # For building AUR packages (etc.)
-    - lsof
-    - dosfstools
-    - exfat-utils
-    - ntfs-3g
-    - fzf # Fuzzy finder
-    - the_silver_searcher # Code searching tool (ag)
-    - jq
+  pacman:
+    state: latest
+    name:
+      - tree
+      - rsync
+      - zip
+      - unzip
+      - zsh
+      - grml-zsh-config # TODO review what this package is providing.
+      - base-devel # For building AUR packages (etc.)
+      - lsof
+      - dosfstools
+      - exfat-utils
+      - ntfs-3g
+      - fzf # Fuzzy finder
+      - the_silver_searcher # Code searching tool (ag)
+      - jq
 
 - name: Create user will
   user:
@@ -45,6 +43,13 @@
   copy:
     src: zshrc
     dest: /home/will/.zshrc
+    owner: will
+    group: will
+
+- name: Install will's bashrc
+  copy:
+    src: bashrc
+    dest: /home/will/.bashrc
     owner: will
     group: will
 

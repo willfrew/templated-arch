@@ -1,7 +1,8 @@
 ---
 - name: Install haskell packages
-  pacman: name={{ item }} state=latest
-  with_items:
-    - ghc
-    - stack
+  pacman:
+    name:
+      - ghc
+      - stack
+    state: latest
 ...

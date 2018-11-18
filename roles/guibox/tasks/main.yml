@@ -1,22 +1,23 @@
 ---
 - name: Install xorg server, xmonad & xmobar
-  pacman: name={{ item }} state=latest
-  with_items:
-    - xorg-server
-    - xorg-xinit # TODO replace with my own startx script
-    - xorg-xsetroot # For setting the default cursor
-    - xorg-xprop # For querying info about open windows
-    - xorg-xev # For printing x server events
-    - xorg-xfontsel # For visually selecting font strings
-    - xorg-xrandr
-    - xorg-xbacklight
-    - xmonad
-    - xmonad-contrib
-    - xmobar
-    - dmenu
-    - feh
-    - alsa-utils # So xmonad can control volume levels through amixer
-    - libnotify
+  pacman:
+    state: latest
+    name:
+      - xorg-server
+      - xorg-xinit # TODO replace with my own startx script
+      - xorg-xsetroot # For setting the default cursor
+      - xorg-xprop # For querying info about open windows
+      - xorg-xev # For printing x server events
+      - xorg-xfontsel # For visually selecting font strings
+      - xorg-xrandr
+      - xorg-xbacklight
+      - xmonad
+      - xmonad-contrib
+      - xmobar
+      - dmenu
+      - feh
+      - alsa-utils # So xmonad can control volume levels through amixer
+      - libnotify
 
 - name: Install xmonad config
   copy:
@@ -48,17 +49,18 @@
     - wallpaper.jpg
 
 - name: Install gui niceties
-  pacman: name={{ item }} state=latest
-  with_items:
-    - rxvt-unicode
-    - urxvt-perls
-    - chromium
-    - firefox
-    - ttf-dejavu
-    - scrot
-    - gimp
-    - transmission-gtk
-    - vlc
+  pacman:
+    state: latest
+    name:
+      - rxvt-unicode
+      - urxvt-perls
+      - chromium
+      - firefox
+      - ttf-dejavu
+      - scrot
+      - gimp
+      - transmission-gtk
+      - vlc
 
 - name: Install libwidevine for Netflix DRM
   aur:
