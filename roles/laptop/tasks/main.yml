@@ -1,4 +1,11 @@
 ---
+- name: Install laptop mode tools
+  aur:
+    name: laptop-mode-tools
+    use: makepkg
+  become_user: will
+  become: true
+
 - name: Install synaptics driver
   pacman: name=xf86-input-synaptics state=latest
 

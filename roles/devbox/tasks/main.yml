@@ -29,6 +29,8 @@
     - kubectx
     - kubernetes-helm
     - jmeter
+    - sops
+    - kops-bin
 
 - name: Add myself to libvirt group
   user:

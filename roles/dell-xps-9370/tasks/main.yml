@@ -3,3 +3,8 @@
   pacman:
     name: libsmbios
     state: latest
+
+- name: Install powertop
+  pacman:
+    name: powertop
+    state: latest

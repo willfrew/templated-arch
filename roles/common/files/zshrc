@@ -77,7 +77,7 @@ export PATH=$PATH:$GOPATH/bin
 export _JAVA_AWT_WM_NONREPARENTING=1
 export CHROME_BIN=$(which chromium)
 # So NPM_TOKEN can be used in docker builds
-export NPM_TOKEN=$(cat ~/.npmrc | sed -e 's/^.*authToken=//')
+export NPM_TOKEN=$(cat ~/.npmrc | sed  -r -e 's/^\/\/registry.npmjs.org\/:_authToken="?(.*)"?$/\1/;t;d')
 
 # Store the last directory cd'd into so that we can start new shells in the
 # same directory.
