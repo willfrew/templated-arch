@@ -12,12 +12,21 @@
       - nmap
       - bind-tools # DNS utilities
 
-- name: Install Google Public DNS resolv.conf
+- name: Install systemd-resolved config
   copy:
-    src: resolv.conf
+    src: resolved.conf
+    dest: /etc/systemd/resolved.conf
+    owner: root
+    group: root
+
+- name: Symlink /etc/resolv.conf to dynamic systemd-resolved config
+  file:
+    state: link
+    src: /run/systemd/resolve/stub-resolv.conf
     dest: /etc/resolv.conf
     owner: root
     group: root
+    mode: u=rw,g=r,o=r
 
 - name: Install OpenVPN config files
   copy:
