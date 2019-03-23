@@ -33,6 +33,12 @@
     - sops
     - kops-bin
 
+- name: Install expo-cli
+  npm:
+    name: expo-cli
+    global: yes
+    production: yes
+
 - name: Add myself to libvirt group
   user:
     name: will
