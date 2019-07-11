@@ -69,3 +69,10 @@
     skip_installed: yes
   become: yes
   become_user: will
+
+- name: Install pulseaudio
+  pacman:
+    state: latest
+    name:
+      - pulseaudio
+      - pulsemixer

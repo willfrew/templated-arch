@@ -23,22 +23,19 @@ manageProgs = composeAll
                   className =? "Firefox"  --> viewShift "web",
                   className =? "Gimp"     --> viewShift "img",
                   className =? "URxvt"    --> viewShift "term",
-                  stringProperty "WM_WINDOW_ROLE" =? "pop-up" --> doFloat
+                  stringProperty "WM_WINDOW_ROLE" =? "pop-up" --> doFloat,
+                  title =? "Picture-in-picture" --> doFloat
                 ]
                 where viewShift = doF . liftM2 (.) W.greedyView W.shift
 
 myKeys      = [
                 ("M-S-l", spawn "xscreensaver-command --lock"),
                 ("M-i", spawn "chromium" ),
-                ("<XF86AudioRaiseVolume>", spawn "amixer set Master 1+"),
-                ("<XF86AudioLowerVolume>", spawn "amixer set Master 1-"),
-                ("<XF86AudioMute>", spawn "amixer set Master toggle"),
+                ("<XF86AudioRaiseVolume>", spawn "pulsemixer --change-volume +1"),
+                ("<XF86AudioLowerVolume>", spawn "pulsemixer --change-volume -1"),
+                ("<XF86AudioMute>", spawn "pulsemixer --toggle-mute"),
                 ("<XF86MonBrightnessUp>", spawn "xbacklight -inc 10"),
-                ("<XF86MonBrightnessDown>", spawn "xbacklight -dec 10"),
-                -- asus specific binds
-                -- TODO: work out how to set keys per machine.
-                ("<XF86KbdBrightnessUp>", spawn "asus-kbd-backlight up"),
-                ("<XF86KbdBrightnessDown>", spawn "asus-kbd-backlight down")
+                ("<XF86MonBrightnessDown>", spawn "xbacklight -dec 10")
               ]
               ++ -- Stop greedyViewing on multiple screens
               [(otherModMasks ++ "M-" ++ [key], action tag)

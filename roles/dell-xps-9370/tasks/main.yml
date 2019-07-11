@@ -8,3 +8,22 @@
   pacman:
     name: powertop
     state: latest
+
+- name: Install bluetooth related software
+  pacman:
+    name:
+      - bluez
+      - bluez-utils
+      - pulseaudio-bluetooth
+
+- name: Start & enable bluetooth service
+  systemd:
+    name: bluetooth.service
+    state: started
+    enabled: yes
+
+- name: Give will user bluetooth device access
+  user:
+    name: will
+    groups: lp
+    append: yes

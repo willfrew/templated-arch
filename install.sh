@@ -21,8 +21,8 @@ git submodule update
 
 # Update pacman cache
 pacman -Sy
+# System upgrade
+pacman -Su
 
 ansible-playbook $ROOTDIR/main.yml --inventory $ROOTDIR/hosts --limit $HOST "$@"
 
-# System upgrade
-pacman -Su
