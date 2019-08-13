@@ -1,8 +1,0 @@
-[Unit]
-Description=Restart OpenVPN after suspend
-
-[Service]
-ExecStart=/usr/bin/pkill --signal SIGHUP --exact openvpn
-
-[Install]
-WantedBy=sleep.target
