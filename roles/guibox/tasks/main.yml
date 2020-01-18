@@ -59,12 +59,43 @@
       - ttf-dejavu
       - scrot
       - gimp
+      - libreoffice-still
       - transmission-gtk
       - vlc
+      # Gaming
+      - discord
+      - wine-staging
+      - wine-mono
+      - lib32-gnutls
+      - lib32-libldap
+      - vulkan-icd-loader
+      - lib32-vulkan-icd-loader
+      - vulkan-intel
+      - lib32-vulkan-intel
+      - lib32-mpg123
+      - vkd3d
+      - lib32-vkd3d
+      - lib32-libpulse
+
+- name: Install ms fonts
+  aur:
+    name: ttf-ms-fonts
+    use: makepkg
+    skip_installed: yes
+  become: yes
+  become_user: will
 
 - name: Install libwidevine for Netflix DRM
   aur:
     name: chromium-widevine
+    use: makepkg
+    skip_installed: yes
+  become: yes
+  become_user: will
+
+- name: Install zoom
+  aur:
+    name: zoom
     use: makepkg
     skip_installed: yes
   become: yes

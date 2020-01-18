@@ -42,11 +42,6 @@ alias du='du -h'
 alias biggest='du -h . | sort -rh | head -$1'
 alias battperc='echo "$(date) - $(cat /sys/class/power_supply/BAT*/capacity)% - $(cat /sys/class/power_supply/BAT*/status)"'
 
-# If faceless is installed under ~/.faceless, let it set up the yieldify command
-[ -f $HOME/.faceless/.venv/bin/_facelesscmd ] && \
-  eval $($HOME/.faceless/.venv/bin/_facelesscmd env init)
-
-
 # Clipboard manipulation (pipe in / out)
 alias cbcopy="xsel -b -i"
 alias cbpaste="xsel -b -o"

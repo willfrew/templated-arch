@@ -10,6 +10,7 @@
       - traceroute
       - nmap
       - bind-tools # DNS utilities
+      - crda # Wireless regdomain database
 
 - name: Install systemd-resolved config
   copy:

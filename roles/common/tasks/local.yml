@@ -14,6 +14,7 @@
       - dosfstools
       - exfat-utils
       - ntfs-3g
+      - gptfdisk # For GPT/MBR management of disks
       - fzf # Fuzzy finder
       - the_silver_searcher # Code searching tool (ag)
       - jq
