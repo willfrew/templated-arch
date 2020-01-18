@@ -48,3 +48,11 @@ set omnifunc=syntaxcomplete#Complete
 " Edit typescript files in-place for better webpack 'watch' compatibility
 autocmd FileType typescript setlocal backupcopy=yes
 autocmd FileType typescript nnoremap <leader>t :echo tsuquyomi#hint()<CR>
+
+" Ensure that tsx files are both highlighted and type-checked properly
+" See: https://github.com/Quramy/tsuquyomi/issues/300
+augroup typescriptreact
+  au!
+  autocmd BufNewFile,BufRead *.tsx   set filetype=typescript
+  autocmd BufNewFile,BufRead *.tsx   set filetype=javascript
+augroup END
