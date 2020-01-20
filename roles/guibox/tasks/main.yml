@@ -85,6 +85,13 @@
   become: yes
   become_user: will
 
+- name: Install fonts for Chinese/Japanese/Korean characters
+  pacman:
+    state: latest
+    name:
+      - adobe-source-han-sans-otc-fonts # Sans
+      - adobe-source-han-serif-otc-fonts # Serif
+
 - name: Install libwidevine for Netflix DRM
   aur:
     name: chromium-widevine
