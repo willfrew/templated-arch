@@ -13,12 +13,14 @@
       - lzop
       - packer
       - aircrack-ng
-
-      # For running kubernetes with kvm via minikube
       - qemu-headless
       - libvirt
+      - virt-install
+      - virt-viewer
+      - ovmf # Libvirt EUFI boot support
       - ebtables # Required for libvirt networking
       - dnsmasq # Ditto
+      - arch-install-scripts
 
 - name: Install devtools from aur
   aur: name={{ item }} use=makepkg skip_installed=yes

@@ -51,10 +51,10 @@ autocmd FileType typescript nnoremap <leader>t :echo tsuquyomi#hint()<CR>
 
 " Ensure that tsx files are both highlighted and type-checked properly
 " See: https://github.com/Quramy/tsuquyomi/issues/300
-augroup typescriptreact
+augroup typescript
   au!
   autocmd BufNewFile,BufRead *.tsx   set filetype=typescript
-  autocmd BufNewFile,BufRead *.tsx   set filetype=javascript
+  autocmd BufNewFile,BufRead *.tsx   set syntax=typescriptreact
   autocmd BufNewFile,BufRead *.ts   set filetype=typescript
-  autocmd BufNewFile,BufRead *.ts   set filetype=javascript
+  autocmd BufNewFile,BufRead *.ts   set syntax=javascript
 augroup END
