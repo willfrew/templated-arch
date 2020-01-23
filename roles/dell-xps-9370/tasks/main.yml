@@ -27,3 +27,25 @@
     name: will
     groups: lp
     append: yes
+
+- name: Create group for users able to change the backlight brightness
+  group:
+    name: backlight
+
+- name: Add will to backlight group
+  user:
+    name: will
+    groups: backlight
+    append: yes
+
+- name: Install systemd service to set the backlight permissions on boot
+  copy:
+    src: backlight-permissions.service
+    dest: /etc/systemd/system/backlight-permissions.service
+
+- name: Enable backlight permissions systemd service
+  systemd:
+    name: backlight-permissions.service
+    enabled: yes
+    daemon_reload: yes # To pick up the new file on first install
+

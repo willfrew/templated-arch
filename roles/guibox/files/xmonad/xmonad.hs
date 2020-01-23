@@ -34,8 +34,8 @@ myKeys      = [
                 ("<XF86AudioRaiseVolume>", spawn "pulsemixer --change-volume +1"),
                 ("<XF86AudioLowerVolume>", spawn "pulsemixer --change-volume -1"),
                 ("<XF86AudioMute>", spawn "pulsemixer --toggle-mute"),
-                ("<XF86MonBrightnessUp>", spawn "xbacklight -inc 10"),
-                ("<XF86MonBrightnessDown>", spawn "xbacklight -dec 10")
+                ("<XF86MonBrightnessUp>", spawn "( F=/sys/class/backlight/intel_backlight/brightness; awk '{print($1+500)}' $F > /tmp/.bklght; cat /tmp/.bklght > $F)"),
+                ("<XF86MonBrightnessDown>", spawn "( F=/sys/class/backlight/intel_backlight/brightness; awk '{print($1-500)}' $F > /tmp/.bklght; cat /tmp/.bklght > $F)")
               ]
               ++ -- Stop greedyViewing on multiple screens
               [(otherModMasks ++ "M-" ++ [key], action tag)
@@ -56,4 +56,3 @@ conf      = defaultConfig
               handleEventHook = docksEventHook <+> handleEventHook defaultConfig
             }
           `additionalKeysP` myKeys
-

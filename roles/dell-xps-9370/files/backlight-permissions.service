@@ -1,0 +1,12 @@
+[Unit]
+Description=Set screen backlight to be writable by members of the backlight group
+Requires=sys-devices-pci0000:00-0000:00:02.0-drm-card0-card0\x2deDP\x2d1-intel_backlight.device
+
+[Service]
+Type=oneshot
+User=root
+ExecStart=/bin/bash -c "/bin/chown root:backlight /sys/class/backlight/intel_backlight/brightness"
+ExecStart=/bin/bash -c "/bin/chmod 0664 /sys/class/backlight/intel_backlight/brightness"
+
+[Install]
+WantedBy=multi-user.target
