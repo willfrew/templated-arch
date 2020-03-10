@@ -21,16 +21,16 @@
       - ebtables # Required for libvirt networking
       - dnsmasq # Ditto
       - arch-install-scripts
+      - minikube
+      - kubectl
+      - kubectx
 
 - name: Install devtools from aur
   aur: name={{ item }} use=makepkg skip_installed=yes
   become: yes
   become_user: will
   with_items:
-    - minikube
     - docker-machine-driver-kvm2
-    - kubectl
-    - kubectx
     - kubernetes-helm
     - jmeter
     - sops
