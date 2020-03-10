@@ -8,6 +8,7 @@
       - docker-compose
       - nodejs
       - npm
+      - yarn
       - aws-cli
       - python2-virtualenv
       - lzop
