@@ -1,0 +1,37 @@
+---
+- name: Install gaming software / tools / etc
+  pacman:
+    state: latest
+    name:
+      - discord
+      - wine-staging
+      - wine-mono
+      - lib32-gnutls
+      - lib32-libldap
+      - vulkan-icd-loader
+      - lib32-vulkan-icd-loader
+      - vulkan-intel
+      - lib32-vulkan-intel
+      - vulkan-tools
+      - lib32-mpg123
+      - vkd3d
+      - lib32-vkd3d
+      - lib32-libpulse
+
+# Needs to be installed into the wine installation with:
+#   WINE_PREFIX=/path/to/.wine setup_dxvk install
+- name: Install DXVK
+  aur:
+    name: dxvk-bin
+    use: makepkg
+    skip_installed: yes
+  become: yes
+  become_user: will
+
+- name: Install ms fonts
+  aur:
+    name: ttf-ms-fonts
+    use: makepkg
+    skip_installed: yes
+  become: yes
+  become_user: will

@@ -10,4 +10,13 @@
     - laptop
     - devbox
     - haskell
+    - gaming
     - dell-xps-9370
+
+- hosts: 0utbreak
+  roles:
+    - common
+    - guibox
+    - laptop
+    - devbox
+    - haskell
