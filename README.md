@@ -7,3 +7,6 @@
 4. Clone this repo (`git clone https://github.com/willfrew/templated-arch`)
 5. Run the ansible playbook (`./templated-arch/install.sh`)
 6. Set your password (`passwd will`)
+
+## Optional
+7. Create `.gitconfig.work` with work-specific overrides for git configuration (user.email / gpg signing key)

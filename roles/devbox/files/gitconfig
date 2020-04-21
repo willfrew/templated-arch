@@ -2,5 +2,8 @@
 	email = will.frew1@gmail.com
 	name = Will Frew
 
+[includeIf "gitdir:~/Projects/work/"]
+  path = ~/.gitconfig.work
+
 [alias]
   lgb = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%n' --abbrev-commit --date=relative --branches

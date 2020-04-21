@@ -6,10 +6,9 @@ set expandtab
 set shiftwidth=2
 set tabstop=2
 set softtabstop=2
-set autoindent
 
 " Sets the 'leader' key to comma since it's close
-let mapleader=","
+let mapleader = ","
 
 " Highlight matching {[()]}
 set showmatch
@@ -40,8 +39,23 @@ let g:tex_flavor = "latex"
 " Spellchecking for .tex files
 autocmd FileType tex setlocal spell
 
-" Omni-completion
+
+" Indentation
+set autoindent
+set smartindent
+filetype on
 filetype plugin on
+filetype indent on
+filetype plugin indent on
+" Indenting inside a set of braces will add an extra-indented newline in-between
+" and leave us there to carry on typing
+let g:AutoPairsMapCR = 1
+
+" Only jump over auto-created closing braces, quotes etc. insert a new one if
+" the next one was created outside of the current editing session
+let g:AutoPairsUseInsertedCount = 1
+
+" Omni-completion
 set omnifunc=syntaxcomplete#Complete
 
 "" Typescript config

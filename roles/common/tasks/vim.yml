@@ -33,9 +33,7 @@
   become: yes
   become_user: will
   with_items:
-    - owner: tpope
-      reponame: vim-surround
-    - owner: vim-scripts
+    - owner: dimonomid
       reponame: auto-pairs-gentle
     - owner: Shougo
       reponame: vimproc.vim
@@ -53,6 +51,15 @@
       reponame: jedi-vim
     - owner: vim-syntastic
       reponame: syntastic
+    - owner: prettier
+      reponame: vim-prettier
+
+- name: Ensure unused plugins are uninstalled
+  file:
+    path: /home/will/.vim/bundle/{{ item }}
+    state: absent
+  with_items:
+    - vim-surround
 
 - name: Make vimproc
   make:
