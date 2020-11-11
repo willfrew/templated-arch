@@ -15,3 +15,6 @@
     dest: /etc/X11/xorg.conf.d/50-synaptics.conf
     owner: root
     group: root
+
+- name: Install firmware update service
+  pacman: name=fwupd state=latest
