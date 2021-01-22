@@ -25,6 +25,10 @@
       - minikube
       - kubectl
       - kubectx
+      - kustomize
+      - skaffold
+      - bazel
+      - code
 
 - name: Install devtools from aur
   aur: name={{ item }} use=makepkg skip_installed=yes
@@ -36,6 +40,8 @@
     - jmeter
     - sops
     - kops-bin
+    - ibazel
+    - python-aws-google-auth
 
 - name: Install expo-cli
   npm:
