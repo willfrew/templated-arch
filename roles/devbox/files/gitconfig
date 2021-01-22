@@ -2,6 +2,12 @@
 	email = will.frew1@gmail.com
 	name = Will Frew
 
+[pull]
+  rebase = True
+
+[diff]
+  colorMoved = zebra
+
 [includeIf "gitdir:~/Projects/work/"]
   path = ~/.gitconfig.work
 
