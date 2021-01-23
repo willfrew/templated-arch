@@ -15,7 +15,7 @@ main =
   xmonad =<< xmobar conf
 
 -- Named (and un-named) workspaces.
-wkspcs = ["1", "web", "term", "4", "tunes", "6", "7", "8", "9"]
+wkspcs = ["video", "web", "term", "4", "tunes", "6", "7", "8", "9"]
 
 -- Per-program management
 manageProgs = composeAll
@@ -23,6 +23,7 @@ manageProgs = composeAll
                   className =? "Firefox"  --> viewShift "web",
                   className =? "Gimp"     --> viewShift "img",
                   className =? "URxvt"    --> viewShift "term",
+                  className =? "vlc"      --> viewShift "video",
                   stringProperty "WM_WINDOW_ROLE" =? "pop-up" --> doFloat,
                   title =? "Picture-in-picture" --> doFloat
                 ]
