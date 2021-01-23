@@ -32,17 +32,20 @@
       - code
 
 - name: Install devtools from aur
-  aur: name={{ item }} use=makepkg skip_installed=yes
+  aur:
+    use: makepkg
+    skip_installed: yes
+    name:
+      - docker-machine-driver-kvm2
+      - kubernetes-helm
+      - jmeter
+      - sops
+      - kops-bin
+      - ibazel
+      - python-configparser
+      - python-aws-google-auth
   become: yes
   become_user: will
-  with_items:
-    - docker-machine-driver-kvm2
-    - kubernetes-helm
-    - jmeter
-    - sops
-    - kops-bin
-    - ibazel
-    - python-aws-google-auth
 
 - name: Install expo-cli
   npm:
