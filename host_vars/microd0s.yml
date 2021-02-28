@@ -8,6 +8,8 @@ battery_acpi_name: "BAT0"
 ac_charging_file: "AC/online"
 # Auto-suspend when (not charging and) remaining battery capacity is lteq to
 autosuspend_battery_percentage: 5
+# Percentage at which to send a desktop notification
+low_battery_notification_percentage: 10
 # Wireless interface (for displaying connected SSID & strength)
 wireless_interface: "wlp2s0"
 # CPU core temps to monitor
