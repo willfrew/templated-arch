@@ -1,0 +1,6 @@
+[Unit]
+Description=Trigger auto-suspend on low battery check every minute
+
+[Timer]
+# Check the battery level every minute and suspend
+OnCalendar=*-*-* *:*:00

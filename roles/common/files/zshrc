@@ -1,5 +1,3 @@
-# The following lines were added by compinstall
-
 zstyle ':completion:*' completer _complete _ignored _correct _approximate
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
@@ -20,14 +18,11 @@ FZF_COMPLETION_TRIGGER='~~'
 FZF_DEFAULT_COMMAND='ag -g ""'
 FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-# End of lines added by compinstall
-# Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 unsetopt beep
 bindkey -e
-# End of lines configured by zsh-newuser-install
 
 #### Aliases ####
 alias sudo='sudo ' # To allow sudo use with aliases
@@ -40,7 +35,7 @@ alias ls='ls --color=always -h'
 alias df='df -h'
 alias du='du -h'
 alias biggest='du -h . | sort -rh | head -$1'
-alias battperc='echo "$(date) - $(cat /sys/class/power_supply/BAT*/capacity)% - $(cat /sys/class/power_supply/BAT*/status)"'
+alias battperc='echo "$(date) - $(cat /sys/class/power_supply/$WF_BATTERY_NAME/capacity)% - $(cat /sys/class/power_supply/$WF_BATTERY_NAME/status)"'
 
 # Clipboard manipulation (pipe in / out)
 alias cbcopy="xsel -b -i"

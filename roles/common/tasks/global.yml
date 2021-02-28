@@ -29,3 +29,11 @@
     src: 01_wheel_sudoers
     dest: /etc/sudoers.d/01_wheel
     validate: visudo -cf %s
+
+- name: Install environment file
+  template:
+    src: environment.j2
+    dest: /etc/environment
+    owner: root
+    group: root
+    mode: '644'

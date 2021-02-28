@@ -1,13 +1,17 @@
 ---
+- name: Install laptop tools
+  pacman:
+    state: latest
+    name:
+      - xf86-input-synaptics
+      - fwupd # Firmware update
+
 - name: Install laptop mode tools
   aur:
     name: laptop-mode-tools
     use: makepkg
   become_user: will
   become: true
-
-- name: Install synaptics driver
-  pacman: name=xf86-input-synaptics state=latest
 
 - name: Install touchpad config
   copy:
@@ -16,5 +20,26 @@
     owner: root
     group: root
 
-- name: Install firmware update service
-  pacman: name=fwupd state=latest
+- name: Install low-battery-suspend script
+  copy:
+    src: low-battery-suspend.sh
+    dest: /opt/low-battery-suspend
+    owner: root
+    group: root
+    mode: u=rwx,g=rx,o=rx
+
+- name: Install low-battery-suspend systemd service
+  copy:
+    src: low-battery-suspend.service
+    dest: /etc/systemd/system/low-battery-suspend.service
+
+- name: Install low-battery-suspend systemd timer
+  copy:
+    src: low-battery-suspend.timer
+    dest: /etc/systemd/system/low-battery-suspend.timer
+
+- name: Enable backlight permissions systemd timer
+  systemd:
+    name: low-battery-suspend.timer
+    enabled: yes
+    daemon_reload: yes # To pick up the new file on first install

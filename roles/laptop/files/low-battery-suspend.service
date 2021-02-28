@@ -1,0 +1,6 @@
+[Unit]
+Description=Auto-suspends the system if battery level is low & not charging
+
+[Service]
+EnvironmentFile=/etc/environment
+ExecStart=/opt/low-battery-suspend
