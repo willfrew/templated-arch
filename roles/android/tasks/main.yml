@@ -1,0 +1,25 @@
+---
+- name: Install android tools
+  pacman:
+    state: latest
+    name:
+      - android-tools
+      - android-udev
+      - aarch64-linux-gnu-gcc
+      - clang
+
+- name: Install pmbootstrap
+  aur:
+    use: makepkg
+    skip_installed: yes
+    name:
+      - pmbootstrap
+  become: yes
+  become_user: will
+
+- name: Add myself to adbusers group
+  user:
+    name: will
+    groups: adbusers
+    append: yes
+...
