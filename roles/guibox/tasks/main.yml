@@ -18,6 +18,7 @@
       - feh
       - alsa-utils # So xmonad can control volume levels through amixer
       - libnotify
+      - dunst
 
 - name: Install xmonad config
   copy:
@@ -36,6 +37,31 @@
     group: will
   notify:
     - recompile xmonad
+
+- name: Create dunst config directory
+  file:
+    path: /home/will/.config/dunst
+    state: directory
+    owner: will
+    group: will
+
+- name: Install dunstrc
+  copy:
+    src: dunstrc
+    dest: /home/will/.config/dunst/dunstrc
+    owner: will
+    group: will
+
+# - name: Install dunst.service
+#   copy:
+#     src: dunst.service
+#     dest: /etc/systemd/system/dunst.service
+#
+# - name: Enable dunst notification daemon
+#   systemd:
+#     name: dunst.service
+#     enabled: yes
+#     daemon_reload: yes # To pick up the new file on first install
 
 - name: Install other configuration dotfiles (/dotfolders)
   copy:
@@ -101,3 +127,4 @@
     name:
       - pulseaudio
       - pulsemixer
+

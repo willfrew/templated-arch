@@ -38,7 +38,7 @@
     src: low-battery-suspend.timer
     dest: /etc/systemd/system/low-battery-suspend.timer
 
-- name: Enable backlight permissions systemd timer
+- name: Enable low-battery-suspend timer
   systemd:
     name: low-battery-suspend.timer
     enabled: yes

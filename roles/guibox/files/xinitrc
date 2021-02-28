@@ -8,6 +8,7 @@ setxkbmap -layout us
 xset r rate 200 28
 # Wallpaper
 feh --bg-scale ~/.wallpaper.jpg &
+# Start the notification daemon
+dunst &
 # Xmonad
 exec xmonad
-

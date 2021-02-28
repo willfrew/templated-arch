@@ -1,0 +1,13 @@
+# See:
+#   https://github.com/dunst-project/dunst/blob/54b665898f6a9d13377057e618e42fd6adb63561/dunst.systemd.service.in
+
+[Unit]
+Description=Dunst notification daemon
+Documentation=man:dunst(1)
+PartOf=graphical-session.target
+
+[Service]
+Type=dbus
+BusName=org.freedesktop.Notifications
+Environment=DISPLAY=':0'
+ExecStart=/usr/bin/dunst
