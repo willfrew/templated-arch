@@ -18,6 +18,7 @@
       - fzf # Fuzzy finder
       - the_silver_searcher # Code searching tool (ag)
       - jq
+      - yq
 
 - name: Create user will
   user:
