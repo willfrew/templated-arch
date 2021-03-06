@@ -2,6 +2,8 @@
 ansible_connection: local
 become_method: su
 
+user_name: will
+
 # ACPI Battery name
 battery_acpi_name: "BAT0"
 # ACPI AC charging info file in /sys/class/power_supply
