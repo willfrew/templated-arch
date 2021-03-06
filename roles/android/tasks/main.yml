@@ -15,11 +15,11 @@
     name:
       - pmbootstrap
   become: yes
-  become_user: will
+  become_user: "{{ user_name }}"
 
 - name: Add myself to adbusers group
   user:
-    name: will
+    name: "{{ user_name }}"
     groups: adbusers
     append: yes
 ...

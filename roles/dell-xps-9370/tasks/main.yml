@@ -13,9 +13,9 @@
   group:
     name: backlight
 
-- name: Add will to backlight group
+- name: Add user to backlight group
   user:
-    name: will
+    name: "{{ user_name }}"
     groups: backlight
     append: yes
 

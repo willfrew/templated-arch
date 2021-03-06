@@ -45,7 +45,7 @@
       - python-configparser
       - python-aws-google-auth
   become: yes
-  become_user: will
+  become_user: "{{ user_name }}"
 
 - name: Install expo-cli
   npm:
@@ -55,7 +55,7 @@
 
 - name: Add myself to libvirt group
   user:
-    name: will
+    name: "{{ user_name }}"
     groups: libvirt
     append: yes
 
@@ -68,9 +68,9 @@
 - name: Install gitconfig
   copy:
     src: gitconfig
-    dest: /home/will/.gitconfig
-    owner: will
-    group: will
+    dest: /home/{{ user_name }}/.gitconfig
+    owner: "{{ user_name }}"
+    group: "{{ user_name }}"
 
 - name: Start docker daemon at boot time
   systemd:
@@ -80,7 +80,7 @@
 
 - name: Add myself to the docker group
   user:
-    name: will
+    name: "{{ user_name }}"
     groups: docker
     append: yes
 ...

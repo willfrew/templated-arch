@@ -20,9 +20,9 @@
       - jq
       - yq
 
-- name: Create user will
+- name: Create user
   user:
-    name: will
+    name: "{{ user_name }}"
     shell: /usr/bin/zsh
     groups: wheel
     createhome: yes
@@ -37,21 +37,21 @@
     use: makepkg
     skip_installed: yes
   become: yes
-  become_user: will
+  become_user: "{{ user_name }}"
 
-- name: Install will's zshrc
+- name: Install user's zshrc
   copy:
     src: zshrc
-    dest: /home/will/.zshrc
-    owner: will
-    group: will
+    dest: /home/{{ user_name }}/.zshrc
+    owner: "{{ user_name }}"
+    group: "{{ user_name }}"
 
-- name: Install will's bashrc
+- name: Install user's bashrc
   copy:
     src: bashrc
-    dest: /home/will/.bashrc
-    owner: will
-    group: will
+    dest: /home/{{ user_name }}/.bashrc
+    owner: "{{ user_name }}"
+    group: "{{ user_name }}"
 
 - name: Install root's zshrc
   copy:

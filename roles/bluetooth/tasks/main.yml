@@ -11,8 +11,8 @@
     state: started
     enabled: yes
 
-- name: Give will user bluetooth device access
+- name: Give user bluetooth device access
   user:
-    name: will
+    name: "{{ user_name }}"
     groups: lp
     append: yes

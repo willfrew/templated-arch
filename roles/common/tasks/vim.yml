@@ -2,19 +2,19 @@
 - name: Install vim
   pacman: name=vim state=latest
 
-- name: Install will's vimrc
+- name: Install user's vimrc
   copy:
     src: vimrc
-    dest: /home/will/.vimrc
-    owner: will
-    group: will
+    dest: /home/{{ user_name }}/.vimrc
+    owner: "{{ user_name }}"
+    group: "{{ user_name }}"
 
 - name: Create .vim folder and subdirectories
   file:
-    path: /home/will/.vim/{{ item }}
+    path: /home/{{ user_name }}/.vim/{{ item }}
     state: directory
-    owner: will
-    group: will
+    owner: "{{ user_name }}"
+    group: "{{ user_name }}"
   with_items:
     - bundle
     - autoload
@@ -22,16 +22,16 @@
 - name: Install pathogen
   get_url:
     url: https://tpo.pe/pathogen.vim
-    dest: /home/will/.vim/autoload/pathogen.vim
-    owner: will
-    group: will
+    dest: /home/{{ user_name }}/.vim/autoload/pathogen.vim
+    owner: "{{ user_name }}"
+    group: "{{ user_name }}"
 
 - name: Install plugins from github
   git:
     repo: https://github.com/{{ item.owner }}/{{ item.reponame }}.git
-    dest: /home/will/.vim/bundle/{{ item.reponame }}
+    dest: /home/{{ user_name }}/.vim/bundle/{{ item.reponame }}
   become: yes
-  become_user: will
+  become_user: "{{ user_name }}"
   with_items:
     - owner: dimonomid
       reponame: auto-pairs-gentle
@@ -56,16 +56,16 @@
 
 - name: Ensure unused plugins are uninstalled
   file:
-    path: /home/will/.vim/bundle/{{ item }}
+    path: /home/{{ user_name }}/.vim/bundle/{{ item }}
     state: absent
   with_items:
     - vim-surround
 
 - name: Make vimproc
   make:
-    chdir: /home/will/.vim/bundle/vimproc.vim
+    chdir: /home/{{ user_name }}/.vim/bundle/vimproc.vim
   become: yes
-  become_user: will
+  become_user: "{{ user_name }}"
 
 - name: Install root's vimrc
   copy:

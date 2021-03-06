@@ -23,52 +23,41 @@
 - name: Install xmonad config
   copy:
     src: xmonad/
-    dest: /home/will/.xmonad
-    owner: will
-    group: will
+    dest: /home/{{ user_name }}/.xmonad
+    owner: "{{ user_name }}"
+    group: "{{ user_name }}"
   notify:
     - recompile xmonad
 
 - name: Install xmobarrc
   template:
     src: xmobarrc.j2
-    dest: /home/will/.xmobarrc
-    owner: will
-    group: will
+    dest: /home/{{ user_name }}/.xmobarrc
+    owner: "{{ user_name }}"
+    group: "{{ user_name }}"
   notify:
     - recompile xmonad
 
 - name: Create dunst config directory
   file:
-    path: /home/will/.config/dunst
+    path: /home/{{ user_name }}/.config/dunst
     state: directory
-    owner: will
-    group: will
+    owner: "{{ user_name }}"
+    group: "{{ user_name }}"
 
 - name: Install dunstrc
   copy:
     src: dunstrc
-    dest: /home/will/.config/dunst/dunstrc
-    owner: will
-    group: will
-
-# - name: Install dunst.service
-#   copy:
-#     src: dunst.service
-#     dest: /etc/systemd/system/dunst.service
-#
-# - name: Enable dunst notification daemon
-#   systemd:
-#     name: dunst.service
-#     enabled: yes
-#     daemon_reload: yes # To pick up the new file on first install
+    dest: /home/{{ user_name }}/.config/dunst/dunstrc
+    owner: "{{ user_name }}"
+    group: "{{ user_name }}"
 
 - name: Install other configuration dotfiles (/dotfolders)
   copy:
     src: "{{ item }}"
-    dest: "/home/will/.{{ item }}"
-    owner: will
-    group: will
+    dest: "/home/{{ user_name }}/.{{ item }}"
+    owner: "{{ user_name }}"
+    group: "{{ user_name }}"
   with_items:
     - xinitrc
     - Xresources
@@ -96,7 +85,7 @@
     use: makepkg
     skip_installed: yes
   become: yes
-  become_user: will
+  become_user: "{{ user_name }}"
 
 - name: Install fonts for Chinese/Japanese/Korean characters
   pacman:
@@ -111,7 +100,7 @@
     use: makepkg
     skip_installed: yes
   become: yes
-  become_user: will
+  become_user: "{{ user_name }}"
 
 - name: Install zoom
   aur:
@@ -119,7 +108,7 @@
     use: makepkg
     skip_installed: yes
   become: yes
-  become_user: will
+  become_user: "{{ user_name }}"
 
 - name: Install pulseaudio
   pacman:

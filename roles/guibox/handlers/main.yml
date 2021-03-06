@@ -2,4 +2,4 @@
 - name: recompile xmonad
   command: /usr/bin/xmonad --recompile
   become: yes
-  become_user: will
+  become_user: "{{ user_name }}"
