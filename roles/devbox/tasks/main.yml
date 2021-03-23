@@ -44,6 +44,7 @@
       - ibazel
       - python-configparser
       - python-aws-google-auth
+      - google-cloud-sdk
   become: yes
   become_user: "{{ user_name }}"
 
