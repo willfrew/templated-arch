@@ -69,7 +69,6 @@
     name:
       - rxvt-unicode
       - urxvt-perls
-      - chromium
       - firefox
       - ttf-dejavu
       - scrot
@@ -79,11 +78,15 @@
       - vlc
       - freerdp
 
-- name: Install urxvt extension for font resizing on the fly
+- name: Install aur packages
   aur:
-    name: urxvt-resize-font-git
+    name: "{{ item }}"
     use: makepkg
     skip_installed: yes
+  with_items:
+    - zoom
+    - google-chrome
+    - urxvt-resize-font-git # For font resizing on the fly
   become: yes
   become_user: "{{ user_name }}"
 
@@ -93,22 +96,6 @@
     name:
       - adobe-source-han-sans-otc-fonts # Sans
       - adobe-source-han-serif-otc-fonts # Serif
-
-- name: Install libwidevine for Netflix DRM
-  aur:
-    name: chromium-widevine
-    use: makepkg
-    skip_installed: yes
-  become: yes
-  become_user: "{{ user_name }}"
-
-- name: Install zoom
-  aur:
-    name: zoom
-    use: makepkg
-    skip_installed: yes
-  become: yes
-  become_user: "{{ user_name }}"
 
 - name: Install pulseaudio
   pacman:

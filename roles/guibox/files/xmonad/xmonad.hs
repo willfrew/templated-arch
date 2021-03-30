@@ -19,7 +19,7 @@ wkspcs = ["video", "web", "term", "4", "tunes", "6", "7", "8", "9"]
 
 -- Per-program management
 manageProgs = composeAll
-                [ className =? "Chromium" --> viewShift "web",
+                [ className =? "Google-chrome" --> viewShift "web",
                   className =? "Firefox"  --> viewShift "web",
                   className =? "Gimp"     --> viewShift "img",
                   className =? "URxvt"    --> viewShift "term",
@@ -31,7 +31,7 @@ manageProgs = composeAll
 
 myKeys      = [
                 ("M-S-l", spawn "xscreensaver-command --lock"),
-                ("M-i", spawn "chromium" ),
+                ("M-i", spawn "google-chrome-stable" ),
                 ("<XF86AudioRaiseVolume>", spawn "pulsemixer --change-volume +1"),
                 ("<XF86AudioLowerVolume>", spawn "pulsemixer --change-volume -1"),
                 ("<XF86AudioMute>", spawn "pulsemixer --toggle-mute"),

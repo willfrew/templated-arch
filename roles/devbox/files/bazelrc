@@ -1,0 +1,3 @@
+# Always sandbox commands regardless of workspace settings
+build --spawn_strategy=sandboxed
+test --spawn_strategy=sandboxed

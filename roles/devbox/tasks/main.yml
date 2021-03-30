@@ -72,6 +72,13 @@
     owner: "{{ user_name }}"
     group: "{{ user_name }}"
 
+- name: Install bazelrc
+  copy:
+    src: bazelrc
+    dest: /home/{{ user_name }}/.bazelrc
+    owner: "{{ user_name }}"
+    group: "{{ user_name }}"
+
 - name: Start docker daemon at boot time
   systemd:
     name: docker
