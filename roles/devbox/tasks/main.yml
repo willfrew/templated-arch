@@ -19,8 +19,8 @@
       - libvirt
       - virt-install
       - virt-viewer
+      - virt-manager
       - ovmf # Libvirt EUFI boot support
-      - ebtables # Required for libvirt networking
       - dnsmasq # Ditto
       - arch-install-scripts
       - minikube
@@ -30,6 +30,7 @@
       - skaffold
       - bazel
       - code
+      - rustup
 
 - name: Install devtools from aur
   aur:

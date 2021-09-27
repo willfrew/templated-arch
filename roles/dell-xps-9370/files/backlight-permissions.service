@@ -1,6 +1,6 @@
 [Unit]
 Description=Set screen backlight to be writable by members of the backlight group
-Requires=sys-devices-pci0000:00-0000:00:02.0-drm-card0-card0\x2deDP\x2d1-intel_backlight.device
+Requires=systemd-backlight@backlight:intel_backlight.service
 
 [Service]
 Type=oneshot

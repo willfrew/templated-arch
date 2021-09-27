@@ -4,6 +4,7 @@
     state: latest
     name:
       - discord
+      - steam
       - wine-staging
       - wine-mono
       - lib32-gnutls
