@@ -15,6 +15,7 @@
     - android
     - dell-xps-9370
     - emacs
+    - fpv
 
 - hosts: 0utbreak
   roles:

@@ -1,0 +1,31 @@
+---
+- name: Install configuration tools
+  aur:
+    use: makepkg
+    skip_installed: yes
+    name:
+      - betaflight-configurator
+      - blhelisuite32-bin
+  become: yes
+  become_user: "{{ user_name }}"
+
+- name: Create group for access to STM32 microcontrollers
+  group:
+    name: stm32users
+    state: present
+
+- name: Add udev rule for accessing STM32 microcontrollers
+  copy:
+    src: 45-stdfu-permissions.rules
+    dest: /etc/udev/rules.d/45-stdfu-permissions.rules
+    owner: root
+    group: root
+
+- name: Add myself to relevant groups to interact with hardware
+  user:
+    name: "{{ user_name }}"
+    groups:
+      - uucp # Serial port access
+      - stm32users # Allows flashing STM32 MCUs over usb
+    append: yes
+...
