@@ -14,6 +14,7 @@
     - gaming
     - android
     - dell-xps-9370
+    - emacs
 
 - hosts: 0utbreak
   roles:

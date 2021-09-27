@@ -1,0 +1,31 @@
+---
+- name: Install emacs
+  pacman:
+    state: latest
+    name:
+      - emacs
+
+- name: Create emacs config directory
+  file:
+    path: /home/{{ user_name }}/.config/emacs
+    state: directory
+    owner: "{{ user_name }}"
+    group: "{{ user_name }}"
+
+- name: Install init.el
+  copy:
+    src: init.el
+    dest: /home/{{ user_name }}/.config/emacs/init.el
+    owner: "{{ user_name }}"
+    group: "{{ user_name }}"
+
+# May fail on first install, run again after logging in and executing with sudo.
+- name: Enable emacs systemd user service
+  systemd:
+    enabled: yes
+    name: emacs
+    scope: user
+    state: started
+  become: yes
+  become_user: "{{ user_name }}"
+

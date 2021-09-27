@@ -32,7 +32,7 @@ manageProgs = composeAll
 myKeys      = [
                 ("M-S-l", spawn "xscreensaver-command --lock"),
                 ("M-i", spawn "google-chrome-stable" ),
-                ("<XF86AudioRaiseVolume>", spawn "pulsemixer --change-volume +1"),
+                ("M-e", spawn "emacsclient -cn"),
                 ("<XF86AudioLowerVolume>", spawn "pulsemixer --change-volume -1"),
                 ("<XF86AudioMute>", spawn "pulsemixer --toggle-mute"),
                 ("<XF86MonBrightnessUp>", spawn "( F=/sys/class/backlight/intel_backlight/brightness; awk '{print($1+500)}' $F > /tmp/.bklght; cat /tmp/.bklght > $F)"),
