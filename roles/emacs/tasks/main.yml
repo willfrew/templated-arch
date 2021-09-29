@@ -29,3 +29,15 @@
   become: yes
   become_user: "{{ user_name }}"
 
+- name: Install typescript & typescript-language-server globally
+  community.general.npm:
+    name: "{{ item.name }}"
+    version: "{{ item.version }}"
+    global: yes
+    production: yes
+    state: present
+  with_items:
+    - name: typescript
+      version: 4.4.3
+    - name: typescript-language-server
+      version: 0.6.3
