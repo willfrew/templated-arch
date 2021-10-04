@@ -4,6 +4,7 @@
     state: latest
     name:
       - emacs
+      - libvterm # For terminal emulation
 
 - name: Create emacs config directory
   file:

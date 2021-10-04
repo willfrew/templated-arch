@@ -69,6 +69,31 @@
   :config
   (counsel-mode 1))
 
+;;; Terminal Emulation
+
+(defun wf-configure-terminal ()
+  "Turn off line numbers"
+  (display-line-numbers-mode 0)) 
+
+(use-package vterm
+  :init (setq vterm-always-compile-module t)
+  :hook ((vterm-mode . #'wf-configure-terminal))
+  :bind (:map vterm-mode-map)
+  :config
+  ; Disable vim key bindings in the shell
+  (evil-set-initial-state 'vterm-mode 'emacs))
+
+(defun wf-new-terminal ()
+  "Split the current window and spawn a new terminal in one of them"
+  (interactive)
+  (evil-window-vsplit)
+  (multi-vterm))
+
+(use-package multi-vterm
+  :after vterm
+  :config
+  (global-set-key (kbd "M-RET") 'wf-new-terminal))
+
 ;;; Project management & VCS
 
 (defconst
@@ -84,11 +109,11 @@
 ; Project indexing, search & command runner
 (use-package projectile
   :diminish projectile-mode
+  :init (projectile-mode +1)
   :bind (:map projectile-mode-map
               ("C-c p" . projectile-command-map))
   :config
-  (setq projectile-project-search-path `((,wf-project-root . ,wf-project-autodiscover-depth)))
-  (projectile-mode 1))
+  (setq projectile-project-search-path `((,wf-project-root . ,wf-project-autodiscover-depth))))
 
 ; Git interface
 (use-package magit)
@@ -129,7 +154,7 @@
 
 ;; Colour-matched delimiters
 (use-package rainbow-delimiters
-  :hook ((prog-mode . rainbow-limiters-mode)))
+  :hook ((prog-mode . rainbow-delimiters-mode)))
 
 ;;; Note-taking & knowledge management
 
