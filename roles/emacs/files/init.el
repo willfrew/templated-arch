@@ -37,9 +37,11 @@
 
 ;; Vim bindings
 (use-package evil
+  ; TODO
+  ;:custom
+  ;(evil-undo-system 'undo-redo)
   :config
   (require 'evil)
-  (setq evil-undo-system 'undo-redo)
   (evil-mode 1))
 
 ;; Line numbers
