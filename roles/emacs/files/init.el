@@ -10,8 +10,8 @@
 ;; Initialise package sources
 (require 'package)
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
-			 ("org" . "https://orgmode.org/elpa/")
-			 ("elpa" . "https://elpa.gnu.org/packages/")))
+                         ("org" . "https://orgmode.org/elpa/")
+                         ("elpa" . "https://elpa.gnu.org/packages/")))
 ;; Reload package database
 (package-initialize)
 (unless package-archive-contents
@@ -63,7 +63,7 @@
   :config
   (ivy-mode 1)
   (setq ivy-re-builders-alist
-	'((t . ivy--regex-fuzzy))))
+        '((t . ivy--regex-fuzzy))))
 
 ;; Replace common emacs functions with ivy-optimised ones
 (use-package counsel
@@ -177,8 +177,8 @@
   :bind (("C-c n i" . org-roam-node-insert)
          ("C-c n c" . org-roam-capture)
          ("C-c n f" . org-roam-node-find)
-	 ("C-c n l" . org-roam-buffer-toggle)
-         ("C-c n g" . org-roam-graph) 
+         ("C-c n l" . org-roam-buffer-toggle)
+         ("C-c n g" . org-roam-graph)
          ("C-c n j" . org-roam-dailies-capture-today))
   :config
   (setq org-roam-v2-ack t)
