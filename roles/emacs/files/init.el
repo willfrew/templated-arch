@@ -39,6 +39,7 @@
 (use-package evil
   :config
   (require 'evil)
+  (setq evil-undo-system 'undo-redo)
   (evil-mode 1))
 
 ;; Line numbers
@@ -69,10 +70,15 @@
   :config
   (counsel-mode 1))
 
+;; Inline completion
+(use-package company
+  :config
+  (company-mode 1))
+
 ;;; Terminal Emulation
 
 (defun wf-configure-terminal ()
-  "Turn off line numbers"
+  "Configure vterm windows"
   (display-line-numbers-mode 0)) 
 
 (use-package vterm
@@ -137,7 +143,7 @@
 ;; YAML
 (use-package yaml-mode)
 
-;; Scheme
+;; Scheme/Guile
 (use-package geiser)
 (use-package geiser-guile
   :after geiser)
@@ -145,12 +151,10 @@
 ;;; Programming Helpers
 
 ;; Editing tools for lisp(s)
+;; See here for cheatsheet:
+;;   http://pub.gajendra.net/src/paredit-refcard.pdf
 (use-package paredit
-  ; TODO add hooks https://www.emacswiki.org/emacs/ParEdit
-  )
-
-;; TODO company-mode / counsel-company (ivy)
-;; http://company-mode.github.io/
+  :hook ((emacs-lisp-mode scheme-mode lisp-mode) . paredit-mode))
 
 ;; Colour-matched delimiters
 (use-package rainbow-delimiters
