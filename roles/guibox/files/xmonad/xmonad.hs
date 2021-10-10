@@ -1,3 +1,4 @@
+{-# OPTIONS_GHC -Wno-deprecations #-}
 import XMonad
 import XMonad.Config
 import XMonad.Hooks.DynamicLog
@@ -34,6 +35,7 @@ myKeys      = [
                 ("M-i", spawn "google-chrome-stable" ),
                 ("M-e", spawn "emacsclient -cn"),
                 ("<XF86AudioLowerVolume>", spawn "pulsemixer --change-volume -1"),
+                ("<XF86AudioRaiseVolume>", spawn "pulsemixer --change-volume +1"),
                 ("<XF86AudioMute>", spawn "pulsemixer --toggle-mute"),
                 ("<XF86MonBrightnessUp>", spawn "( F=/sys/class/backlight/intel_backlight/brightness; awk '{print($1+500)}' $F > /tmp/.bklght; cat /tmp/.bklght > $F)"),
                 ("<XF86MonBrightnessDown>", spawn "( F=/sys/class/backlight/intel_backlight/brightness; awk '{print($1-500)}' $F > /tmp/.bklght; cat /tmp/.bklght > $F)")

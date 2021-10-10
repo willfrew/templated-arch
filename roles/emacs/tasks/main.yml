@@ -44,3 +44,8 @@
       version: 4.3.4
     - name: typescript-language-server
       version: 0.6.3
+
+- name: Install haskell-language-server
+  pacman:
+    name: haskell-language-server
+    state: latest

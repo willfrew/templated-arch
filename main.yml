@@ -16,6 +16,7 @@
     - dell-xps-9370
     - emacs
     - fpv
+    - guix
 
 - hosts: 0utbreak
   roles:

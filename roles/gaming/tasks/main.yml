@@ -25,7 +25,7 @@
   aur:
     name: dxvk-bin
     use: makepkg
-    skip_installed: yes
+    state: present
   become: yes
   become_user: "{{ user_name }}"
 
@@ -33,6 +33,6 @@
   aur:
     name: ttf-ms-fonts
     use: makepkg
-    skip_installed: yes
+    state: present
   become: yes
   become_user: "{{ user_name }}"

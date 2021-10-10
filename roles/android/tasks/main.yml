@@ -11,7 +11,7 @@
 - name: Install pmbootstrap
   aur:
     use: makepkg
-    skip_installed: yes
+    state: present
     name:
       - pmbootstrap
   become: yes

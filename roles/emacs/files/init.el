@@ -47,6 +47,9 @@
 ;; Line numbers
 (global-display-line-numbers-mode)
 
+;; Highlight trailing whitespace
+(setq-default show-trailing-whitespace t)
+
 ;; Allow quitting with ESC key
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
@@ -79,13 +82,14 @@
 
 ;;; Terminal Emulation
 
-(defun wf-configure-terminal ()
-  "Configure vterm windows"
-  (display-line-numbers-mode 0)) 
+(defun wf-configure-repl ()
+  "Configure repl-style modes"
+  (display-line-numbers-mode 0)
+  (setq show-trailing-whitespace f))
 
 (use-package vterm
   :init (setq vterm-always-compile-module t)
-  :hook ((vterm-mode . #'wf-configure-terminal))
+  :hook ((vterm-mode . #'wf-configure-repl))
   :bind (:map vterm-mode-map)
   :config
   ; Disable vim key bindings in the shell
@@ -114,7 +118,7 @@
   3
   "Auto-discover projects recursively within the project root directory to this depth")
 
-; Project indexing, search & command runner
+;; Project indexing, search & command runner
 (use-package projectile
   :diminish projectile-mode
   :init (projectile-mode +1)
@@ -123,8 +127,13 @@
   :config
   (setq projectile-project-search-path `((,wf-project-root . ,wf-project-autodiscover-depth))))
 
-; Git interface
+;; Git interface
 (use-package magit)
+
+;; Human readable units for dired
+(setq-default dired-listing-switches "-alh")
+;; Recursive copy by default
+(setq dired-recursive-copies 'always)
 
 ;;; Programming Languages
 
@@ -142,13 +151,24 @@
   :config
   (setq typescript-indent-level 2))
 
-;; YAML
-(use-package yaml-mode)
-
 ;; Scheme/Guile
 (use-package geiser)
 (use-package geiser-guile
   :after geiser)
+
+;; Haskell
+(use-package haskell-mode)
+(use-package lsp-haskell
+  :hook ((haskell-mode . lsp)
+	 (haskell-literate-mode . lsp)))
+
+;;; Markup & configuration languages
+
+;; YAML
+(use-package yaml-mode)
+
+;; Udev rules
+(use-package udev-mode)
 
 ;;; Programming Helpers
 

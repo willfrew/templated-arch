@@ -1,0 +1,3 @@
+# Set screen backlight brightness to be writable by members of the backlight group
+SUBSYSTEM=="backlight", ACTION=="ADD", RUN+="/bin/chown root:backlight /sys/class/backlight/$name/brightness"
+SUBSYSTEM=="backlight", ACTION=="ADD", RUN+="/bin/chmod 0664 /sys/class/backlight/$name/brightness"

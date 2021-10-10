@@ -42,7 +42,7 @@
 - name: Install devtools from aur
   aur:
     use: makepkg
-    skip_installed: yes
+    state: present
     name:
       - docker-machine-driver-kvm2
       - kubernetes-helm

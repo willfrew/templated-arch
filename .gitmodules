@@ -1,3 +1,4 @@
 [submodule "library/aur"]
-	path = library/aur
-	url = https://github.com/kewlfft/ansible-aur
+  path = library/aur
+  url = https://github.com/kewlfft/ansible-aur
+  tag = v0.9.1

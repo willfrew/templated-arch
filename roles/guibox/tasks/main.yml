@@ -82,7 +82,7 @@
   aur:
     name: "{{ item }}"
     use: makepkg
-    skip_installed: yes
+    state: present
   with_items:
     - zoom
     - google-chrome

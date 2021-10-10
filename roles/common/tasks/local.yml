@@ -35,7 +35,7 @@
   aur:
     name: aura-bin
     use: makepkg
-    skip_installed: yes
+    state: latest
   become: yes
   become_user: "{{ user_name }}"
 

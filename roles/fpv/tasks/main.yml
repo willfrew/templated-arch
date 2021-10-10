@@ -2,7 +2,7 @@
 - name: Install configuration tools
   aur:
     use: makepkg
-    skip_installed: yes
+    state: present
     name:
       - betaflight-configurator
       - blhelisuite32-bin

@@ -1,0 +1,21 @@
+---
+
+- name: Install guix (if not already installed)
+  shell:
+    cmd: >-
+      if ! which guix; then
+        cd /tmp
+        wget https://git.savannah.gnu.org/cgit/guix.git/plain/etc/guix-install.sh
+        chmod +x guix-install.sh
+        ./guix-install.sh
+      fi
+
+- name: Update guix
+  shell:
+    cmd: guix pull
+
+- name: Install guix-managed packages into user profile
+  shell:
+    cmd: "guix time-machine --channels={{ role_path }}/files/channels.scm -- package --manifest={{ role_path }}/files/manifest.scm"
+  become: yes
+  become_user: "{{ user_name }}"

@@ -19,14 +19,7 @@
     groups: backlight
     append: yes
 
-- name: Install systemd service to set the backlight permissions on boot
+- name: Install udev rules to set the backlight permissions on boot
   copy:
-    src: backlight-permissions.service
-    dest: /etc/systemd/system/backlight-permissions.service
-
-- name: Enable backlight permissions systemd service
-  systemd:
-    name: backlight-permissions.service
-    enabled: yes
-    daemon_reload: yes # To pick up the new file on first install
-
+    src: 99-backlight.rules
+    dest: /etc/udev/rules.d/99-backlight.rules
