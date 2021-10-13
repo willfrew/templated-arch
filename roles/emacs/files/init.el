@@ -50,6 +50,9 @@
 ;; Highlight trailing whitespace
 (setq-default show-trailing-whitespace t)
 
+;; Always follow output in compilation buffers
+(setq compilation-scroll-output t)
+
 ;; Allow quitting with ESC key
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
