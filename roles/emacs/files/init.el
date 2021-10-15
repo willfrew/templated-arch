@@ -158,6 +158,14 @@
 (use-package geiser)
 (use-package geiser-guile
   :after geiser)
+;; Assuming the Guix checkout is in ~/src/guix
+(with-eval-after-load 'geiser-guile
+  (add-to-list 'geiser-guile-load-path
+	       (concat wf-project-root "/savannah/guix")))
+
+;; Guix
+(use-package guix
+  :hook ((scheme-mode . guix-devel-mode)))
 
 ;; Haskell
 (use-package haskell-mode)
