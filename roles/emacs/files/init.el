@@ -35,15 +35,6 @@
 ;; Hide common modes
 (use-package diminish)
 
-;; Vim bindings
-(use-package evil
-  ; TODO
-  ;:custom
-  ;(evil-undo-system 'undo-redo)
-  :config
-  (require 'evil)
-  (evil-mode 1))
-
 ;; Line numbers
 (global-display-line-numbers-mode)
 
@@ -53,23 +44,71 @@
 ;; Always follow output in compilation buffers
 (setq compilation-scroll-output t)
 
-;; Allow quitting with ESC key
-(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+;; Open help windows in a side window
+(customize-set-variable
+ 'display-buffer-alist
+ '(("\\*\\(Help\\|Apropos\\)\\*"
+    display-buffer-in-side-window
+    (side . right))))
 
-;; Which key
+;; Always select help windows after they open
+(customize-set-variable 'help-window-select t)
+
+;;; Key bindings
+
+;; Vim bindings
+(use-package evil
+  :init
+  (setq evil-want-keybinding nil)
+  (setq evil-want-integration t)
+  ; TODO
+  ;:custom
+  ;(evil-undo-system 'undo-redo)
+  :config
+  (require 'evil)
+  (evil-mode 1)
+  ;; Better movement in info-mode
+  (define-key Info-mode-map (kbd "l") 'evil-forward-char)
+  (define-key Info-mode-map (kbd "h") 'evil-backward-char))
+
+(use-package evil-collection
+  :after evil
+  :config
+  (evil-collection-init))
+
+;; Always spaces
+(setq-default indent-tabs-mode nil)
+
+;; Display available key combinations mid-entry
 (use-package which-key
-    :config
-    (which-key-mode))
+  :config
+  (which-key-mode))
 
-;; Completion
-(use-package flx) ; Fuzzy matching
+;; Show last entered
+(use-package keycast
+  :config
+  (setq keycast-remove-tail-elements nil)
+  (setq keycast-separator-width 1)
+  ()
+  (keycast-mode 1))
+
+;;; Completion
+
+;; Completion(ivy) & search(swiper)
 (use-package ivy
   :diminish ivy-mode
-  :after flx
+  :after flx evil
   :config
   (ivy-mode 1)
   (setq ivy-re-builders-alist
-        '((t . ivy--regex-fuzzy))))
+        '((t . ivy--regex-fuzzy)))
+  ;; Remap evil's default search to use swiper instead
+  (define-key evil-normal-state-map (kbd "/") 'swiper))
+
+;; Better sorting for fuzzy-matched swiper(ivy) results
+(use-package flx
+  :config
+  (require 'flx))
 
 ;; Replace common emacs functions with ivy-optimised ones
 (use-package counsel
@@ -158,7 +197,8 @@
 (use-package geiser)
 (use-package geiser-guile
   :after geiser)
-;; Assuming the Guix checkout is in ~/src/guix
+;; TODO this does make guile aware of the guix sources, but they're not really
+;; usable as the guile load path is not properly set for other sources installed by guix.
 (with-eval-after-load 'geiser-guile
   (add-to-list 'geiser-guile-load-path
 	       (concat wf-project-root "/savannah/guix")))

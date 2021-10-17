@@ -13,10 +13,12 @@
     - haskell
     - gaming
     - android
-    - dell-xps-9370
-    - emacs
     - fpv
-    - guix
+    - dell-xps-9370
+    - role: emacs
+      tags: emacs
+    - role: guix
+      tags: guix
 
 - hosts: 0utbreak
   roles:
