@@ -1,18 +1,20 @@
 ---
 
+- name: Install wget for guix install script
+  pacman:
+    name: wget
+    state: latest
+
 - name: Install guix (if not already installed)
   shell:
     cmd: >-
+      set -ex;
       if ! which guix; then
-        cd /tmp
-        wget https://git.savannah.gnu.org/cgit/guix.git/plain/etc/guix-install.sh
-        chmod +x guix-install.sh
-        ./guix-install.sh
+        cd /tmp;
+        wget https://git.savannah.gnu.org/cgit/guix.git/plain/etc/guix-install.sh;
+        chmod +x ./guix-install.sh;
+        yes | ./guix-install.sh;
       fi
-
-- name: Update/downgrade guix itself to my pinned version
-  shell:
-    cmd: "guix time-machine --channels={{role_path}}/files/channels.scm -- pull"
 
 - name: Install guix home profile
   shell:

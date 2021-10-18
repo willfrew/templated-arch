@@ -15,15 +15,27 @@
 
 (home-environment
  (packages
-  (map specification->package '("glibc-locales" "isync" "l2md")))
+  (map specification->package '(;; Guix need explicitly installed locales.
+                                "glibc-locales"
+                                ;; Email sync tool.
+                                "isync"
+                                ;; Mailing list archive downloader.
+                                "l2md"
+                                )))
  (services
   (list
+   ;; Env vars
    (simple-service 'global-env-vars-service
 		   home-environment-variables-service-type
-		   `(("GUIX_LOCPATH" . "$HOME/.guix-home/profile/lib/locale")
-		     ("_JAVA_AWT_WM_NONREPARENTING" . #t)
-		     ("GOPATH" . "$HOME/Projects/go")
-		     ("PATH" . "$PATH:$GOPATH/bin")))
+		   `(
+                     ;; Tell guix where to find locale files.
+                     ("GUIX_LOCPATH" . "$HOME/.guix-home/profile/lib/locale")
+                     ;; Fixes java-gui windows from blanking in tiling window managers.
+                     ("_JAVA_AWT_WM_NONREPARENTING" . #t)
+                     ;; Setup PATH(/GOPATH) for go development.
+                     ("GOPATH" . "$HOME/Projects/go")
+                     ("PATH" . "$PATH:$GOPATH/bin")))
+   ;; Zsh
    (service home-zsh-service-type
-	    (home-zsh-configuration
-	     (zshrc (list (local-file "./zshrc"))))))))
+            (home-zsh-configuration
+             (zshrc (list (local-file "./zshrc"))))))))

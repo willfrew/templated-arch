@@ -5,6 +5,7 @@
     name:
       - emacs
       - libvterm # For terminal emulation
+      - cmake # Dependency of vterm.el
 
 - name: Create emacs config directory
   file:
@@ -49,3 +50,9 @@
   pacman:
     name: haskell-language-server
     state: latest
+  # Temporarily skip this while it gets updated
+  # Upstream bugs:
+  #   https://bugs.archlinux.org/task/72401
+  #   https://bugs.archlinux.org/task/72456
+  tags:
+    - never

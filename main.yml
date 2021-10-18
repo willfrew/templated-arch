@@ -29,3 +29,7 @@
     - devbox
     - haskell
     - emacs
+    - role: emacs
+      tags: emacs
+    - role: guix
+      tags: guix
