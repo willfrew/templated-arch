@@ -1,9 +1,19 @@
 ---
-- name: Install configuration tools
+- name: Install tools
+  pacman:
+    name:
+      - arduino-cli
+      - freecad
+      - cura
+      - prusa-slicer
+    state: latest
+
+- name: Install tools from aur
   aur:
     use: makepkg
     state: present
     name:
+      - arduino
       - betaflight-configurator
       - blhelisuite32-bin
   become: yes

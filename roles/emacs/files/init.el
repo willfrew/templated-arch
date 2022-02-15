@@ -12,6 +12,7 @@
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
                          ("org" . "https://orgmode.org/elpa/")
                          ("elpa" . "https://elpa.gnu.org/packages/")))
+
 ;; Reload package database
 (package-initialize)
 (unless package-archive-contents
@@ -38,6 +39,10 @@
 ;; Line numbers
 (global-display-line-numbers-mode)
 
+;; Wrap lines in minibuffer
+(add-hook 'minibuffer-setup-hook
+          (lambda () (setq truncate-lines nil)))
+
 ;; Highlight trailing whitespace
 (setq-default show-trailing-whitespace t)
 
@@ -47,9 +52,15 @@
 ;; Open help windows in a side window
 (customize-set-variable
  'display-buffer-alist
- '(("\\*\\(Help\\|Apropos\\)\\*"
+ '(("\\*vterm.*" ; Not working :shrug:
+    display-buffer-pop-up-window
+    (direction . right)
+    (inhibit-same-window . t)
+    (dedicated . t))
+   ("\\*\\(Help\\|Apropos\\)\\*"
     display-buffer-in-side-window
-    (side . right))))
+    (side . right)
+    (window-width . (lambda () (balance-windows))))))
 
 ;; Always select help windows after they open
 (customize-set-variable 'help-window-select t)
@@ -76,7 +87,7 @@
   :config
   (evil-collection-init))
 
-;; Always spaces
+;; <TAB> always inserts spaces
 (setq-default indent-tabs-mode nil)
 
 ;; Display available key combinations mid-entry
@@ -89,7 +100,6 @@
   :config
   (setq keycast-remove-tail-elements nil)
   (setq keycast-separator-width 1)
-  ()
   (keycast-mode 1))
 
 ;;; Completion
@@ -127,26 +137,18 @@
 (defun wf-configure-repl ()
   "Configure repl-style modes"
   (display-line-numbers-mode 0)
-  (setq show-trailing-whitespace f))
+  (setq show-trailing-whitespace nil))
 
 (use-package vterm
   :init (setq vterm-always-compile-module t)
-  :hook ((vterm-mode . #'wf-configure-repl))
-  :bind (:map vterm-mode-map)
   :config
-  ; Disable vim key bindings in the shell
-  (evil-set-initial-state 'vterm-mode 'emacs))
-
-(defun wf-new-terminal ()
-  "Split the current window and spawn a new terminal in one of them"
-  (interactive)
-  (evil-window-vsplit)
-  (multi-vterm))
+  (add-hook 'vterm-mode-hook #'wf-configure-repl)
+  (evil-set-initial-state 'vterm-mode 'normal))
 
 (use-package multi-vterm
   :after vterm
   :config
-  (global-set-key (kbd "M-RET") 'wf-new-terminal))
+  (evil-define-key 'normal 'global (kbd "M-RET") 'multi-vterm))
 
 ;;; Project management & VCS
 
@@ -188,10 +190,17 @@
 
 ;; Typescript
 (use-package typescript-mode
-  :mode "\\.tsx?\\'"
+  :mode "\\.ts\\'"
   :hook (typescript-mode . lsp-deferred)
   :config
   (setq typescript-indent-level 2))
+
+(use-package web-mode
+  :mode "\\.\\(js\\|jsx\\|tsx\\|json\\)\\'"
+  :hook (web-mode . lsp-deferred)
+  :config
+  (setq web-mode-code-indent-offset 2)
+  (setq web-mode-markup-indent-offset 2))
 
 ;; Scheme/Guile
 (use-package geiser)
@@ -213,6 +222,9 @@
   :hook ((haskell-mode . lsp)
 	 (haskell-literate-mode . lsp)))
 
+;; Bazel (Starlark)
+(use-package bazel)
+
 ;;; Markup & configuration languages
 
 ;; YAML
@@ -220,6 +232,9 @@
 
 ;; Udev rules
 (use-package udev-mode)
+
+;; Dockerfiles
+(use-package dockerfile-mode)
 
 ;;; Programming Helpers
 
@@ -254,3 +269,5 @@
   :config
   (setq org-roam-v2-ack t)
   (org-roam-db-autosync-mode))
+
+;;; Email

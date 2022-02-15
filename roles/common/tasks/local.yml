@@ -7,6 +7,7 @@
       - rsync
       - zip
       - unzip
+      - p7zip
       - zsh
       - grml-zsh-config # TODO review what this package is providing.
       - base-devel # For building AUR packages (etc.)
