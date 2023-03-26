@@ -222,8 +222,17 @@
   :hook ((haskell-mode . lsp)
 	 (haskell-literate-mode . lsp)))
 
+;; Rust
+(use-package rust-mode
+  :init
+  (setq lsp-rust-server 'rust-analyzer)
+  :hook ((rust-mode . lsp)))
+
 ;; Bazel (Starlark)
 (use-package bazel)
+
+;; Python
+(add-hook 'python-mode-hook 'lsp)
 
 ;;; Markup & configuration languages
 
@@ -242,11 +251,11 @@
 ;; See here for cheatsheet:
 ;;   http://pub.gajendra.net/src/paredit-refcard.pdf
 (use-package paredit
-  :hook ((emacs-lisp-mode scheme-mode lisp-mode) . paredit-mode))
+  :hook ((emacs-lisp-mode scheme-mode lisp-mode geiser-repl-mode) . paredit-mode))
 
 ;; Colour-matched delimiters
 (use-package rainbow-delimiters
-  :hook ((prog-mode . rainbow-delimiters-mode)))
+  :hook ((prog-mode geiser-repl-mode) . rainbow-delimiters-mode))
 
 ;;; Note-taking & knowledge management
 
@@ -271,3 +280,81 @@
   (org-roam-db-autosync-mode))
 
 ;;; Email
+
+
+
+;; ----------------------------
+;; WIP dedicated minibuffer bar
+
+(defun wf/create-minibuffer-frame ()
+  "Creates a dedicated minibuffer frame pinned to the bottom of the screen"
+  (let*
+      ((frame (make-frame
+               '((name . "Minibuffer")
+                 ;; The frame only contains a minibuffer
+                 (minibuffer . only)
+                 ;; Position the frame at the bottom edge of the screen
+                 (left . 0)
+                 (top . (- 0))
+                 (fullscreen . fullwidth)
+                 (sticky . t)
+                 (undecorated . t)
+                 (fit-frame-to-buffer . vertically)))))
+    frame))
+
+(defun wf/configure-minibuffer-frame (frame)
+  (let* ((display-height (display-pixel-height))
+         (minibuffer-height-chars 1)
+         (minibuffer-height-pixels (* (line-pixel-height) minibuffer-height-chars)))
+    ;; Tell the window manager not to tile this frame
+    (x-delete-window-property "_NET_WM_WINDOW_TYPE" frame)
+    (x-delete-window-property "WM_NORMAL_HINTS" frame)
+    (x-change-window-property "_NET_WM_WINDOW_TYPE"
+                              '("_NET_WM_WINDOW_TYPE_DOCK")
+                              frame
+                              "ATOM"
+                              32
+                              t)
+    (x-change-window-property "_NET_WM_STATE"
+                              '("_NET_WM_STATE_STICKY")
+                              frame
+                              "ATOM"
+                              32
+                              t)
+    (x-change-window-property "_NET_WM_STRUT"
+                              `(0 0 0 ,minibuffer-height-pixels)
+                              frame
+                              "CARDINAL"
+                              32
+                              t)
+    (wf/position-minibuffer frame)
+    (modify-frame-parameters frame `((left . 0)
+                                     (width . ,(display-pixel-width))
+                                     (height . ,minibuffer-height-chars)))))
+
+(defun wf/position-minibuffer (frame)
+  (let* ((minibuffer-frame-height (frame-pixel-height frame)))
+    (modify-frame-parameters frame '((top . (- 0))))))
+
+
+(defun wf/resize-minibuffer (frame)
+  (fit-frame-to-buffer-1 frame 20 1 1000 1000 'vertical)
+  (wf/position-minibuffer frame))
+
+(defun wf/init ()
+  (setq default-frame-alist
+        '((vertical-scroll-bars)
+          (left-fringe . 10)
+          (right-fringe . 10)
+          ;; Use the default minibuffer frame
+          (minibuffer . nil)))
+  (defvar wf/minibuffer-frame (wf/create-minibuffer-frame))
+  (wf/configure-minibuffer-frame wf/minibuffer-frame)
+  ;; Make all other frames created use this frame
+  (setq default-minibuffer-frame wf/minibuffer-frame)
+  (setq minibuffer-auto-raise nil)
+  (setq resize-mini-frames t))
+
+(defun wf/focus-minibuffer ()
+  (select-frame-set-input-focus wf/minibuffer-frame))
+

@@ -13,11 +13,12 @@
       - git
       - docker
       - docker-compose
-      - nodejs-lts-erbium
+      - nodejs-lts-fermium
       - npm
       - yarn
       - aws-cli
       - python2-virtualenv
+      - python-lsp-server
       - lzop
       - packer
       - aircrack-ng
@@ -38,6 +39,10 @@
       - bazel
       - code
       - rustup
+      - rust-analyzer
+      - gdb
+      - postgresql # for psql
+      - tailscale
 
 - name: Install devtools from aur
   aur:
@@ -52,7 +57,11 @@
       - ibazel
       - python-configparser
       - python-aws-google-auth
+      - aws-session-manager-plugin
       - google-cloud-sdk
+      # For docker buildx cross-compilation support
+      - binfmt-qemu-static
+      - qemu-user-static
   become: yes
   become_user: "{{ user_name }}"
 

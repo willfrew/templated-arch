@@ -73,11 +73,13 @@
       - ttf-dejavu
       - scrot
       - gimp
+      - inkscape
       - libreoffice-still
       - transmission-gtk
       - vlc
       - freerdp
       - hplip
+      - audacity
 
 - name: Install aur packages
   aur:

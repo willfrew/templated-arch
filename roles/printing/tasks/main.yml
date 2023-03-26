@@ -1,0 +1,14 @@
+- name: Install printing packages
+  pacman:
+    state: latest
+    name:
+      - cups
+      - cups-pdf # 'Print' to pdf
+
+# Decided to have it always running as the cli tools (lpinfo, etc.)
+# don't seem to like socket activation
+- name: Start and enable the cups service
+  systemd:
+    name: cups.service
+    enabled: yes
+    status: started

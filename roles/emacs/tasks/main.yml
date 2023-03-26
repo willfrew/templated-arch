@@ -20,8 +20,6 @@
     dest: /home/{{ user_name }}/.config/emacs/init.el
     owner: "{{ user_name }}"
     group: "{{ user_name }}"
-  notify:
-    - Restart emacs service
 
 # May fail on first install, run again after logging in and executing with sudo.
 - name: Enable emacs systemd user service

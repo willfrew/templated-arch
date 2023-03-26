@@ -10,5 +10,6 @@ xset r rate 200 28
 feh --bg-scale ~/.wallpaper.jpg &
 # Start the notification daemon
 dunst &
+# emacsclient --eval '(wf/init)'
 # Xmonad
 exec xmonad

@@ -39,7 +39,9 @@
       ("_JAVA_AWT_WM_NONREPARENTING" . "1")
       ;; Setup PATH(/GOPATH) for go development.
       ("GOPATH" . "$HOME/Projects/go")
-      ("PATH" . "$PATH:$GOPATH/bin")))
+      ("PATH" . "$PATH:$GOPATH/bin")
+      ;; Ssh agent socket location
+      ("SSH_AUTH_SOCK" . "$XDG_RUNTIME_DIR/ssh-agent.socket")))
    ;; Zsh
    (service home-zsh-service-type
             (home-zsh-configuration

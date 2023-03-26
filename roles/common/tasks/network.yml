@@ -11,6 +11,9 @@
       - nmap
       - bind-tools # DNS utilities
       - crda # Wireless regdomain database
+      - avahi # mDNS service discovery
+      - nss-mdns # Ditto
+      - hostapd
 
 - name: Install systemd-resolved config
   copy:
@@ -28,3 +31,22 @@
     group: root
     mode: u=rw,g=r,o=r
 
+- name: Install nss-mdns config
+  copy:
+    src: nsswitch.conf
+    dest: /etc/nsswitch.conf
+    owner: root
+    group: root
+
+- name: Limit the nss-mdns resolver to .local domains
+  copy:
+    src: mdns.allow
+    dest: /etc/mdns.allow
+    owner: root
+    group: root
+
+- name: Start & enable the avahi daemon
+  systemd:
+    name: avahi-daemon
+    enabled: yes
+    state: started

@@ -16,11 +16,14 @@ if [[ "$HOST" == "" ]]; then
 fi
 
 cd $ROOTDIR
+git config --system --add safe.directory $ROOTDIR
 git submodule init
 git submodule update --remote --checkout
 
 # Update pacman cache
 pacman -Sy
+# Update the keyring first (prevents some failures mid-upgrade)
+pacman -S archlinux-keyring
 # System upgrade
 pacman -Su
 

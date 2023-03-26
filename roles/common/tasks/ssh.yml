@@ -1,0 +1,17 @@
+---
+- name: Install ssh-agent.service
+  copy:
+    src: ssh-agent.service
+    dest: "/home/{{ user_name }}/.config/systemd/user/ssh-agent.service"
+    owner: "{{ user_name }}"
+    group: "{{ user_name }}"
+
+
+- name: Start & enable the ssh-agent for local user
+  systemd:
+    name: ssh-agent
+    enabled: yes
+    state: started
+    scope: user
+  become: yes
+  become_user: "{{ user_name }}"

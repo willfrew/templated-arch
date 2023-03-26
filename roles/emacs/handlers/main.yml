@@ -1,8 +1,0 @@
----
-- name: Restart emacs service
-  ansible.builtin.systemd:
-    name: emacs
-    scope: user
-    state: restarted
-  become: yes
-  become_user: "{{ user_name }}"

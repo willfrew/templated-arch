@@ -3,3 +3,4 @@
 - include: network.yml
 - include: local.yml
 - include: vim.yml
+- include: ssh.yml
