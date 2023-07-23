@@ -1,4 +1,11 @@
 ---
+- name: Ensure systemd user config directory exists
+  file:
+    state: directory
+    path: "/home/{{ user_name }}/.config/systemd/user"
+    owner: "{{ user_name }}"
+    group: "{{ user_name }}"
+
 - name: Install ssh-agent.service
   copy:
     src: ssh-agent.service
