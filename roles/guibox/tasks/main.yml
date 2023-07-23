@@ -80,6 +80,7 @@
       - freerdp
       - hplip
       - audacity
+      - shotcut
 
 - name: Install aur packages
   aur:

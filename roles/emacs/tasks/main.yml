@@ -31,7 +31,7 @@
   become: yes
   become_user: "{{ user_name }}"
 
-- name: Install typescript & typescript-language-server globally
+- name: Install npm-sourced language servers globally
   community.general.npm:
     name: "{{ item.name }}"
     version: "{{ item.version }}"
@@ -40,9 +40,11 @@
     state: present
   with_items:
     - name: typescript
-      version: 4.3.4
+      version: 5.0.4
     - name: typescript-language-server
-      version: 0.6.3
+      version: 3.3.1
+    - name: graphql-language-service-cli
+      version: 3.3.17
 
 - name: Install haskell-language-server
   pacman:

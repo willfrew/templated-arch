@@ -234,6 +234,10 @@
 ;; Python
 (add-hook 'python-mode-hook 'lsp)
 
+;; GLSL ((Web)GL Shader Language)
+(use-package glsl-mode)
+(use-package company-glsl)
+
 ;;; Markup & configuration languages
 
 ;; YAML
