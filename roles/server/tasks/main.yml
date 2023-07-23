@@ -9,6 +9,7 @@
       - minikube
       - kubectl
       - tailscale
+      - lm_sensors
 
 - name: Start docker daemon at boot time
   systemd:
