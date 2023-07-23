@@ -21,4 +21,10 @@
     name: "{{ user_name }}"
     groups: docker
     append: yes
+
+- name: Enable the tailscale daemon
+  systemd:
+    name: tailscaled
+    enabled: yes
+    state: started
 ...
