@@ -43,3 +43,11 @@
     name: low-battery-suspend.timer
     enabled: yes
     daemon_reload: yes # To pick up the new file on first install
+
+- name: Install laptop environment file
+  template:
+    src: laptop-environment.j2
+    dest: /etc/environment
+    owner: root
+    group: root
+    mode: '644'
