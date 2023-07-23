@@ -1,0 +1,29 @@
+---
+- name: Install server packages
+  pacman:
+    state: latest
+    name:
+      - git
+      - docker
+      - docker-compose
+      - minikube
+      - kubectl
+
+- name: Add user to libvirt group
+  user:
+    name: "{{ user_name }}"
+    groups: libvirt
+    append: yes
+
+- name: Start docker daemon at boot time
+  systemd:
+    name: docker
+    enabled: yes
+    state: started
+
+- name: Add user to the docker group
+  user:
+    name: "{{ user_name }}"
+    groups: docker
+    append: yes
+...

@@ -20,16 +20,7 @@
     - role: guix
       tags: guix
 
-- hosts: 0utbreak
+- hosts: d1sclosure
   roles:
     - common
-    - guibox
-    - laptop
-    - bluetooth
-    - devbox
-    - haskell
-    - emacs
-    - role: emacs
-      tags: emacs
-    - role: guix
-      tags: guix
+    - server
