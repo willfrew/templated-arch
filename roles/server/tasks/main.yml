@@ -16,6 +16,8 @@
     state: latest
     name:
       - k3s-bin
+  become: yes
+  become_user: "{{ user_name }}"
 
 - name: Start docker daemon at boot time
   systemd:
