@@ -6,10 +6,16 @@
       - git
       - docker
       - docker-compose
-      - minikube
       - kubectl
       - tailscale
       - lm_sensors
+
+- name: Install aur packages
+  aur:
+    use: makepkg
+    state: latest
+    name:
+      - k3s-bin
 
 - name: Start docker daemon at boot time
   systemd:
