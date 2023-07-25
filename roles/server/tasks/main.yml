@@ -36,4 +36,9 @@
     name: tailscaled
     enabled: yes
     state: started
+
+- name: Enable the k3s service
+  systemd:
+    name: k3s
+    enabled: yes
 ...
