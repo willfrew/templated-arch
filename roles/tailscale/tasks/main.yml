@@ -1,0 +1,13 @@
+---
+- name: Install tailscale
+  pacman:
+    state: latest
+    name:
+      - tailscale
+
+- name: Enable the tailscale daemon
+  systemd:
+    name: tailscaled
+    enabled: yes
+    state: started
+...

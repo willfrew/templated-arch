@@ -7,7 +7,6 @@
       - docker
       - docker-compose
       - kubectl
-      - tailscale
       - lm_sensors
 
 - name: Install aur packages
@@ -30,12 +29,6 @@
     name: "{{ user_name }}"
     groups: docker
     append: yes
-
-- name: Enable the tailscale daemon
-  systemd:
-    name: tailscaled
-    enabled: yes
-    state: started
 
 - name: Enable the k3s service
   systemd:
