@@ -5,6 +5,7 @@
     state: removed
     name:
       - nodejs
+      - nodejs-lts-fermium
 
 - name: Install development tools
   pacman:
@@ -13,7 +14,7 @@
       - git
       - docker
       - docker-compose
-      - nodejs-lts-fermium
+      - nodejs-lts-hydrogen
       - npm
       - yarn
       - aws-cli
@@ -23,7 +24,6 @@
       - packer
       - aircrack-ng
       - john
-      - qemu-headless
       - libvirt
       - virt-install
       - virt-viewer
@@ -64,12 +64,6 @@
       - qemu-user-static
   become: yes
   become_user: "{{ user_name }}"
-
-- name: Install expo-cli
-  npm:
-    name: expo-cli
-    global: yes
-    production: yes
 
 - name: Add myself to libvirt group
   user:

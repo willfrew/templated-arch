@@ -95,13 +95,6 @@
   :config
   (which-key-mode))
 
-;; Show last entered
-(use-package keycast
-  :config
-  (setq keycast-remove-tail-elements nil)
-  (setq keycast-separator-width 1)
-  (keycast-mode 1))
-
 ;;; Completion
 
 ;; Completion(ivy) & search(swiper)
@@ -201,6 +194,9 @@
   :config
   (setq web-mode-code-indent-offset 2)
   (setq web-mode-markup-indent-offset 2))
+
+(use-package markdown-mode
+  :mode "\\.\\(mdx\\|md\\)\\'")
 
 ;; Scheme/Guile
 (use-package geiser)
