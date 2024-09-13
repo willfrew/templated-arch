@@ -18,8 +18,6 @@
     - dell-xps-9370
     - role: emacs
       tags: emacs
-    - role: guix
-      tags: guix
 
 - hosts: d1sclosure
   roles:

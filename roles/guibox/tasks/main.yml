@@ -86,7 +86,7 @@
   aur:
     name: "{{ item }}"
     use: makepkg
-    state: present
+    state: latest
   with_items:
     - zoom
     - google-chrome

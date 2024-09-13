@@ -1,6 +1,6 @@
 ---
-- include: global.yml
-- include: network.yml
-- include: local.yml
-- include: vim.yml
-- include: ssh.yml
+- include_tasks: global.yml
+- include_tasks: network.yml
+- include_tasks: local.yml
+- include_tasks: vim.yml
+- include_tasks: ssh.yml

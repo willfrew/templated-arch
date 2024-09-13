@@ -4,7 +4,6 @@
     name:
       - arduino-cli
       - freecad
-      - cura
       - prusa-slicer
     state: latest
 
@@ -13,6 +12,7 @@
     use: makepkg
     state: present
     name:
+      - cura-bin
       - arduino
       - betaflight-configurator
       - blhelisuite32-bin

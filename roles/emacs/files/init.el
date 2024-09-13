@@ -127,31 +127,51 @@
 
 ;;; Terminal Emulation
 
-(defun wf-configure-repl ()
+(defun wf/open-vterm ()
+  (interactive)
+  (if (projectile-project-p)
+      (let
+          ((default-directory (projectile-project-root)))
+        (multi-vterm))
+    (multi-vterm)))
+
+(defun configure-repl ()
   "Configure repl-style modes"
   (display-line-numbers-mode 0)
   (setq show-trailing-whitespace nil))
 
+;; Pull environment variables e.g. PATH from the outer shell
+(use-package exec-path-from-shell
+  :config
+  (setq exec-path-from-shell-variables
+        '("PATH"
+          "MANPATH"
+          "GUIX_LOCPATH"
+          "GUIX_PROFILE"
+          "SSH_AUTH_SOCK"))
+  (exec-path-from-shell-initialize))
+
 (use-package vterm
   :init (setq vterm-always-compile-module t)
   :config
-  (add-hook 'vterm-mode-hook #'wf-configure-repl)
-  (evil-set-initial-state 'vterm-mode 'normal))
+  (add-hook 'vterm-mode-hook #'configure-repl)
+  (evil-set-initial-state 'vterm-mode 'normal)
+  (setq vterm-shell "/bin/bash"))
 
 (use-package multi-vterm
   :after vterm
   :config
-  (evil-define-key 'normal 'global (kbd "M-RET") 'multi-vterm))
+  (evil-define-key 'normal 'global (kbd "M-RET") 'wf/open-vterm))
 
 ;;; Project management & VCS
 
 (defconst
-  wf-project-root
+  project-root
   "~/Projects"
   "Root directory for all projects")
 
 (defconst
-  wf-project-autodiscover-depth
+  project-autodiscover-depth
   3
   "Auto-discover projects recursively within the project root directory to this depth")
 
@@ -162,7 +182,7 @@
   :bind (:map projectile-mode-map
               ("C-c p" . projectile-command-map))
   :config
-  (setq projectile-project-search-path `((,wf-project-root . ,wf-project-autodiscover-depth))))
+  (setq projectile-project-search-path `((,project-root . ,project-autodiscover-depth))))
 
 ;; Git interface
 (use-package magit)
@@ -199,18 +219,22 @@
   :mode "\\.\\(mdx\\|md\\)\\'")
 
 ;; Scheme/Guile
+
+(defconst wf/guix-src-path
+  (concat project-root "/savannah/guix"))
+
 (use-package geiser)
 (use-package geiser-guile
   :after geiser)
 ;; TODO this does make guile aware of the guix sources, but they're not really
 ;; usable as the guile load path is not properly set for other sources installed by guix.
 (with-eval-after-load 'geiser-guile
-  (add-to-list 'geiser-guile-load-path
-	       (concat wf-project-root "/savannah/guix")))
+  (add-to-list 'geiser-guile-load-path wf/guix-src-path))
 
 ;; Guix
 (use-package guix
-  :hook ((scheme-mode . guix-devel-mode)))
+  :hook ((scheme-mode . guix-devel-mode))
+  :config (setq guix-load-path wf/guix-src-path))
 
 ;; Haskell
 (use-package haskell-mode)
@@ -222,7 +246,8 @@
 (use-package rust-mode
   :init
   (setq lsp-rust-server 'rust-analyzer)
-  :hook ((rust-mode . lsp)))
+  :hook ((rust-mode . lsp))
+  :config (setq lsp-rust-analyzer-check-all-targets nil))
 
 ;; Bazel (Starlark)
 (use-package bazel)
